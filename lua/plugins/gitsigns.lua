@@ -2,6 +2,8 @@
 -- NOTE: gitsigns is already included in init.lua but contains only the base
 -- config. This will add also the recommended keymaps.
 
+dofile(vim.g.base46_cache .. "git")
+
 return {
   {
     'lewis6991/gitsigns.nvim',

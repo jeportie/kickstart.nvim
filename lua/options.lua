@@ -82,4 +82,7 @@ opt.scrolloff = 10
 -- See `:help 'confirm'`
 opt.confirm = true
 
+-- interval for writing swap file to disk, also used by gitsigns
+opt.updatetime = 250
+
 vim.g.base46_cache = vim.fn.stdpath 'data' .. '/base46_cache/'

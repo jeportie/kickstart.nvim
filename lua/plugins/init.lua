@@ -7,7 +7,6 @@ return {
   require 'plugins.lspconfig',
   require 'plugins.autoformat',
   require 'plugins.autocompletion',
-  require 'plugins.tokyonight',
   require 'plugins.todocomments',
   require 'plugins.mini',
   require 'plugins.treesitter',

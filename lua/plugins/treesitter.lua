@@ -1,3 +1,5 @@
+dofile(vim.g.base46_cache .. "telescope")
+
 return { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',

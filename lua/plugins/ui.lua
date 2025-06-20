@@ -1,22 +1,37 @@
 return {
   'nvim-lua/plenary.nvim',
-  { 'nvim-tree/nvim-web-devicons', lazy = true },
-
-  {
-    'nvchad/ui',
-    config = function()
-      require 'nvchad'
-    end,
-  },
 
   {
     'nvchad/base46',
-    lazy = true,
     build = function()
       require('base46').load_all_highlights()
     end,
   },
 
-  'nvchad/volt', -- optional, needed for theme switcher
-  -- or just use Telescope themes
+  {
+    'nvchad/ui',
+    lazy = false,
+    config = function()
+      require 'nvchad'
+    end,
+  },
+
+  'nvzone/volt',
+  'nvzone/menu',
+  { 'nvzone/minty', cmd = { 'Huefy', 'Shades' } },
+
+  {
+    'nvim-tree/nvim-web-devicons',
+    opts = function()
+      dofile(vim.g.base46_cache .. 'devicons')
+      return { override = require 'nvchad.icons.devicons' }
+    end,
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    opts = function()
+      return require "plugins.nvimtree"
+    end,
+  },
 }

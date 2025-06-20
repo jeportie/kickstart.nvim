@@ -40,6 +40,10 @@ return { -- Useful plugin to show you pending keybinds.
         F11 = '<F11>',
         F12 = '<F12>',
       },
+      function()
+        dofile(vim.g.base46_cache .. 'whichkey')
+        return {}
+      end,
     },
 
     -- Document existing key chains
