@@ -17,4 +17,10 @@ return {
   require 'plugins.neo-tree',
   require 'plugins.42-header',
   require 'plugins.ui',
+  require 'plugins.noice',
+  require 'plugins.volt',
+  require 'plugins.outline',
+  require 'plugins.lspsaga',
+  require 'plugins.avante',
+  -- require 'plugins.mcphub',
 }
