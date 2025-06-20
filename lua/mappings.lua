@@ -41,3 +41,7 @@ map('n', '<leader>wK', '<cmd>WhichKey <CR>', { desc = 'whichkey all keymaps' })
 map('n', '<leader>wk', function()
   vim.cmd('WhichKey ' .. vim.fn.input 'WhichKey: ')
 end, { desc = 'whichkey query lookup' })
+
+-- Key mappings for setting the colorcolumn
+vim.keymap.set('n', '<Leader>cc', ':set colorcolumn=80<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>ncc', ':set colorcolumn-=80<CR>', { noremap = true, silent = true })
