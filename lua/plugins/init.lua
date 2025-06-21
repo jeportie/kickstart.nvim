@@ -1,4 +1,8 @@
 return {
+  -- Plugin Suite
+  require 'plugins.mini',
+  require 'plugins.snacks',
+
   require 'plugins.guess-indent',
   require 'plugins.gitsigns',
   require 'plugins.whichkey',
@@ -8,7 +12,6 @@ return {
   require 'plugins.autoformat',
   require 'plugins.autocompletion',
   require 'plugins.todocomments',
-  require 'plugins.mini',
   require 'plugins.treesitter',
   require 'plugins.debug',
   require 'plugins.indent_line',
@@ -21,6 +24,8 @@ return {
   require 'plugins.volt',
   require 'plugins.outline',
   require 'plugins.lspsaga',
+  require 'plugins.helpview',
+  -- AI Plugins
   require 'plugins.avante',
   -- require 'plugins.mcphub',
 }

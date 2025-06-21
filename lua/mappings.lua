@@ -46,50 +46,54 @@ end, { desc = 'whichkey query lookup' })
 vim.keymap.set('n', '<Leader>cc', ':set colorcolumn=80<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>ncc', ':set colorcolumn-=80<CR>', { noremap = true, silent = true })
 
-map("n", "<leader>fm", function()
-  require("conform").format { lsp_fallback = true }
-end, { desc = "general format file" })
+map('n', '<leader>fm', function()
+  require('conform').format { lsp_fallback = true }
+end, { desc = 'general format file' })
 
 -- global lsp mappings
-map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
+map('n', '<leader>ds', vim.diagnostic.setloclist, { desc = 'LSP diagnostic loclist' })
 
 -- tabufline
-map("n", "<leader>tb", "<cmd>enew<CR>", { desc = "buffer new" })
+map('n', '<leader>tb', '<cmd>enew<CR>', { desc = 'buffer new' })
 
-map("n", "<tab>", function()
-  require("nvchad.tabufline").next()
-end, { desc = "buffer goto next" })
+map('n', '<tab>', function()
+  require('nvchad.tabufline').next()
+end, { desc = 'buffer goto next' })
 
-map("n", "<S-tab>", function()
-  require("nvchad.tabufline").prev()
-end, { desc = "buffer goto prev" })
+map('n', '<S-tab>', function()
+  require('nvchad.tabufline').prev()
+end, { desc = 'buffer goto prev' })
 
-map("n", "<leader>x", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "buffer close" })
+map('n', '<leader>x', function()
+  require('nvchad.tabufline').close_buffer()
+end, { desc = 'buffer close' })
 
 -- new terminals
-map("n", "<leader>h", function()
-  require("nvchad.term").new { pos = "sp" }
-end, { desc = "terminal new horizontal term" })
+map('n', '<leader>h', function()
+  require('nvchad.term').new { pos = 'sp' }
+end, { desc = 'terminal new horizontal term' })
 
-map("n", "<leader>v", function()
-  require("nvchad.term").new { pos = "vsp" }
-end, { desc = "terminal new vertical term" })
+map('n', '<leader>v', function()
+  require('nvchad.term').new { pos = 'vsp' }
+end, { desc = 'terminal new vertical term' })
 
 -- toggleable
-map({ "n", "t" }, "<A-v>", function()
-  require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
-end, { desc = "terminal toggleable vertical term" })
+map({ 'n', 't' }, '<A-v>', function()
+  require('nvchad.term').toggle { pos = 'vsp', id = 'vtoggleTerm' }
+end, { desc = 'terminal toggleable vertical term' })
 
-map({ "n", "t" }, "<A-h>", function()
-  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
-end, { desc = "terminal toggleable horizontal term" })
+map({ 'n', 't' }, '<A-h>', function()
+  require('nvchad.term').toggle { pos = 'sp', id = 'htoggleTerm' }
+end, { desc = 'terminal toggleable horizontal term' })
 
-map({ "n", "t" }, "<A-i>", function()
-  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
-end, { desc = "terminal toggle floating term" })
+map({ 'n', 't' }, '<A-i>', function()
+  require('nvchad.term').toggle { pos = 'float', id = 'floatTerm' }
+end, { desc = 'terminal toggle floating term' })
 
 -- nvimtree
-map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
-map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
+map('n', '<C-n>', '<cmd>NvimTreeToggle<CR>', { desc = 'nvimtree toggle window' })
+map('n', '<leader>e', '<cmd>NvimTreeFocus<CR>', { desc = 'nvimtree focus window' })
+
+-- nvchad
+map('n', '<leader>th', ":lua require('nvchad.themes').open()<CR>", { noremap = true, silent = true })
+map('n', '<leader>ch', ':NvCheatsheet<CR>', { noremap = true, silent = true })
