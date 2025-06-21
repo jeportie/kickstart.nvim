@@ -1,30 +1,46 @@
+-- -------------------------------------------------------------------------- --
+--                                                                            --
+--                                                        :::      ::::::::   --
+--   init.lua                                           :+:      :+:    :+:   --
+--                                                    +:+ +:+         +:+     --
+--   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
+--                                                +#+#+#+#+#+   +#+           --
+--   Created: 2025/06/21 12:03:51 by jeportie          #+#    #+#             --
+--   Updated: 2025/06/21 12:26:04 by jeportie         ###   ########.fr       --
+--                                                                            --
+-- -------------------------------------------------------------------------- --
+
 return {
-  -- Plugin Suite
+  -- General Utilities
   require 'plugins.mini',
   require 'plugins.snacks',
-
-  require 'plugins.guess-indent',
-  require 'plugins.gitsigns',
   require 'plugins.whichkey',
   require 'plugins.telescope',
   require 'plugins.lazydev',
+  require 'plugins.ui',
+  require 'plugins.volt',
+
+  -- LSP and Autocompletion
   require 'plugins.lspconfig',
-  require 'plugins.autoformat',
   require 'plugins.autocompletion',
-  require 'plugins.todocomments',
   require 'plugins.treesitter',
-  require 'plugins.debug',
+  require 'plugins.lspsaga',
+  require 'plugins.todocomments',
+  require 'plugins.autopairs',
   require 'plugins.indent_line',
   require 'plugins.lint',
-  require 'plugins.autopairs',
-  require 'plugins.neo-tree',
-  require 'plugins.42-header',
-  require 'plugins.ui',
   require 'plugins.noice',
-  require 'plugins.volt',
+
+  -- Git and Version Control
+  require 'plugins.gitsigns',
+  require 'plugins.debug',
+
+  -- Keymaps and UI Enhancements
+  require 'plugins.guess-indent',
+  require 'plugins.42-header',
   require 'plugins.outline',
-  require 'plugins.lspsaga',
   require 'plugins.helpview',
+
   -- AI Plugins
   require 'plugins.avante',
   -- require 'plugins.mcphub',
