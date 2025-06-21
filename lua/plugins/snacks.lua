@@ -4,9 +4,9 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    bigfile = { enabled = true },
+    bigfile = require 'plugins.snacks.bigfile',
     dashboard = require 'plugins.snacks.dashboard',
-    explorer = { enabled = true },
+    explorer = require 'plugins.snacks.explorer',
     indent = { enabled = true },
     input = { enabled = true },
     notifier = {

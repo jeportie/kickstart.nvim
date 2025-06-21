@@ -1,6 +1,5 @@
 return {
   'nvim-lua/plenary.nvim',
-
   {
     'nvchad/base46',
     build = function()
