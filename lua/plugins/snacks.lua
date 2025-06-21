@@ -1,15 +1,3 @@
--- -------------------------------------------------------------------------- --
---                                                                            --
---                                                        :::      ::::::::   --
---   snacks.lua                                         :+:      :+:    :+:   --
---                                                    +:+ +:+         +:+     --
---   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
---                                                +#+#+#+#+#+   +#+           --
---   Created: 2025/06/21 12:04:16 by jeportie          #+#    #+#             --
---   Updated: 2025/06/21 12:22:40 by jeportie         ###   ########.fr       --
---                                                                            --
--- -------------------------------------------------------------------------- --
-
 return {
   'folke/snacks.nvim',
   priority = 1000,
@@ -17,7 +5,7 @@ return {
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
+    dashboard = require 'plugins.snacks.dashboard',
     explorer = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },

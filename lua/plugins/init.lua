@@ -14,6 +14,7 @@ return {
   -- General Utilities
   require 'plugins.mini',
   require 'plugins.snacks',
+  require 'plugins.mason',
   require 'plugins.whichkey',
   require 'plugins.telescope',
   require 'plugins.lazydev',
