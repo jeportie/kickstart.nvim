@@ -1,7 +1,7 @@
-require 'options'
-require 'mappings'
-require 'autocommands'
-require 'lazy_install'
+require 'core.options'
+require 'core.mappings'
+require 'core.autocommands'
+require 'core.lazy_install'
 require('lazy').setup(require 'plugins')
 require 'plugins.base64'
 
