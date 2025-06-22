@@ -2,7 +2,6 @@ return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
-  ---@type snacks.Config
   opts = {
     bigfile = require 'plugins.snacks.bigfile',
     dashboard = require 'plugins.snacks.dashboard',

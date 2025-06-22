@@ -1,88 +1,76 @@
-local opt = vim.o
+-- -------------------------------------------------------------------------- --
+--                                                                            --
+--                                                        :::      ::::::::   --
+--   options.lua                                        :+:      :+:    :+:   --
+--                                                    +:+ +:+         +:+     --
+--   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
+--                                                +#+#+#+#+#+   +#+           --
+--   Created: 2025/06/22 19:10:59 by jeportie          #+#    #+#             --
+--   Updated: 2025/06/22 19:44:24 by jeportie         ###   ########.fr       --
+--                                                                            --
+-- -------------------------------------------------------------------------- --
 
--- Set <space> as the leader key
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+local o = vim.opt
+local g = vim.g
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
+-- [[ General ]] -------------------------------------------------------------
+o.mouse               = "a"           -- Enable mouse support in all modes
+o.clipboard           = "unnamedplus" -- Use system clipboard
+o.confirm             = true          -- Confirm potentially destructive actions
+o.undofile            = true          -- Persist undo history across sessions
+o.updatetime          = 250           -- Faster completion and CursorHold
+o.timeoutlen          = 300           -- Mapped sequence timeout length (ms)
 
--- [[ Setting options ]]
+-- [[ User Interface ]] -----------------------------------------------------
+o.termguicolors   = true         -- Enable 24-bit RGB colors
+o.laststatus      = 3            -- Global statusline
+o.showmode            = false         -- Disable default mode indicator
+o.number              = true       -- Show absolute line numbers
+o.numberwidth         = 2          -- Minimal number of columns for line number
+o.cursorline          = true       -- Highlight the screen line of the cursor
+o.cursorlineopt       = "both"     -- Highlight both line and screen line
+o.signcolumn          = "yes"      -- Always show the sign column
+o.ruler               = true       -- Show the cursor position all the time
+o.showbreak       = "↪  "                   -- String to put at line break
+o.list                = true       -- Show invisible characters
+o.listchars           = { tab = '» ', trail = '·', nbsp = '␣' }
 
-opt.number = true
-opt.numberwidth = 2
-opt.ruler = true
-opt.mouse = 'a'
+-- [[ Indentation ]] --------------------------------------------------------
+o.expandtab           = false      -- Use actual tab characters
+o.shiftwidth          = 4          -- Size for autoindent
+o.tabstop             = 4          -- Number of spaces tabs count for
+o.softtabstop         = 4          -- Number of spaces for <Tab> in insert mode
+o.smartindent         = true       -- Smart autoindenting on newline
 
-opt.cursorlineopt = 'both'
+-- [[ Search ]] -------------------------------------------------------------
+o.ignorecase          = true       -- Case-insensitive search...
+o.smartcase           = true       -- ...unless search contains uppercase
+o.inccommand          = 'split'    -- Live preview of :substitute in a split
 
--- Indenting
-opt.expandtab = false
-opt.shiftwidth = 4
-opt.smartindent = true
-opt.tabstop = 4
-opt.softtabstop = 4
+-- [[ Splits ]] -------------------------------------------------------------
+o.splitright          = true       -- New vertical splits go to the right
+o.splitbelow          = true       -- New horizontal splits go below
+o.scrolloff           = 10         -- Keep 10 lines visible above/below cursor
 
--- Don't show the mode, since it's already in the status line
-opt.showmode = false
+-- [[ Completion ]] -------------------------------------------------------------
+o.completeopt     = { "menuone", "noselect" } -- Better completion experience
+o.pumheight       = 10
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  opt.clipboard = 'unnamedplus'
-end)
+-- [[ Auto Commands ]] -------------------------------------------------------------
+vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+  callback = function()
+    if vim.bo.filetype ~= "minifiles" then
+      vim.wo.cursorline = true
+      vim.wo.cursorcolumn = true
+    end
+  end,
+})
+vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+  callback = function()
+    vim.wo.cursorline = false
+    vim.wo.cursorcolumn = false
+  end,
+})
 
--- Enable break indent
-opt.breakindent = true
-
--- Save undo history
-opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-opt.ignorecase = true
-opt.smartcase = true
-
--- Keep signcolumn on by default
-opt.signcolumn = 'yes'
-
--- Decrease update time
-opt.updatetime = 250
-
--- Decrease mapped sequence wait time
-opt.timeoutlen = 300
-
--- Configure how new splits should be opened
-opt.splitright = true
-opt.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
---
---  Notice listchars is set using `vim.opt` instead of `vim.o`.
---  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
---   See `:help lua-options`
---   and `:help lua-options-guide`
-opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
--- Preview substitutions live, as you type!
-opt.inccommand = 'split'
-
--- Show which line your cursor is on
-opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-opt.scrolloff = 10
-
--- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
--- instead raise a dialog asking if you wish to save the current file(s)
--- See `:help 'confirm'`
-opt.confirm = true
-
--- interval for writing swap file to disk, also used by gitsigns
-opt.updatetime = 250
-
-vim.g.base46_cache = vim.fn.stdpath 'data' .. '/base46_cache/'
+-- Base46 cache path (for theme/plugin caching)
+g.base46_cache       = vim.fn.stdpath('data') .. '/base46_cache/'

@@ -1,6 +1,10 @@
 -- INFO: [[ Basic Keymaps ]]
 local map = vim.keymap.set
 
+-- Set <space> as the leader key
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 

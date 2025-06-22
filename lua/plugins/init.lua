@@ -6,7 +6,7 @@
 --   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
 --                                                +#+#+#+#+#+   +#+           --
 --   Created: 2025/06/21 12:03:51 by jeportie          #+#    #+#             --
---   Updated: 2025/06/21 12:26:04 by jeportie         ###   ########.fr       --
+--   Updated: 2025/06/22 19:04:16 by jeportie         ###   ########.fr       --
 --                                                                            --
 -- -------------------------------------------------------------------------- --
 
@@ -30,19 +30,19 @@ return {
   require 'plugins.autopairs',
   require 'plugins.indent_line',
   require 'plugins.lint',
-  require 'plugins.noice',
 
   -- Git and Version Control
   require 'plugins.gitsigns',
   require 'plugins.debug',
 
   -- Keymaps and UI Enhancements
+  require 'plugins.noice',
   require 'plugins.guess-indent',
   require 'plugins.42-header',
   require 'plugins.outline',
   require 'plugins.helpview',
 
   -- AI Plugins
-  require 'plugins.avante',
+  -- require 'plugins.avante',
   -- require 'plugins.mcphub',
 }
