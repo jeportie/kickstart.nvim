@@ -6,7 +6,7 @@
 --   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
 --                                                +#+#+#+#+#+   +#+           --
 --   Created: 2025/06/22 19:10:59 by jeportie          #+#    #+#             --
---   Updated: 2025/06/22 19:44:24 by jeportie         ###   ########.fr       --
+--   Updated: 2025/06/22 19:54:47 by jeportie         ###   ########.fr       --
 --                                                                            --
 -- -------------------------------------------------------------------------- --
 
@@ -51,26 +51,11 @@ o.inccommand          = 'split'    -- Live preview of :substitute in a split
 o.splitright          = true       -- New vertical splits go to the right
 o.splitbelow          = true       -- New horizontal splits go below
 o.scrolloff           = 10         -- Keep 10 lines visible above/below cursor
+o.whichwrap:append("<>[]hl")     -- Allow cursor wrap keys
 
 -- [[ Completion ]] -------------------------------------------------------------
 o.completeopt     = { "menuone", "noselect" } -- Better completion experience
 o.pumheight       = 10
-
--- [[ Auto Commands ]] -------------------------------------------------------------
-vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
-  callback = function()
-    if vim.bo.filetype ~= "minifiles" then
-      vim.wo.cursorline = true
-      vim.wo.cursorcolumn = true
-    end
-  end,
-})
-vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
-  callback = function()
-    vim.wo.cursorline = false
-    vim.wo.cursorcolumn = false
-  end,
-})
 
 -- Base46 cache path (for theme/plugin caching)
 g.base46_cache       = vim.fn.stdpath('data') .. '/base46_cache/'

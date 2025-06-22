@@ -1,5 +1,17 @@
+-- -------------------------------------------------------------------------- --
+--                                                                            --
+--                                                        :::      ::::::::   --
+--   lazy_install.lua                                   :+:      :+:    :+:   --
+--                                                    +:+ +:+         +:+     --
+--   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
+--                                                +#+#+#+#+#+   +#+           --
+--   Created: 2025/06/22 19:55:56 by jeportie          #+#    #+#             --
+--   Updated: 2025/06/22 19:56:37 by jeportie         ###   ########.fr       --
+--                                                                            --
+-- -------------------------------------------------------------------------- --
+
 -- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -9,6 +21,5 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 
----@type vim.Option
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)

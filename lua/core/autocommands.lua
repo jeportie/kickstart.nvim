@@ -1,6 +1,17 @@
+-- -------------------------------------------------------------------------- --
+--                                                                            --
+--                                                        :::      ::::::::   --
+--   autocommands.lua                                   :+:      :+:    :+:   --
+--                                                    +:+ +:+         +:+     --
+--   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
+--                                                +#+#+#+#+#+   +#+           --
+--   Created: 2025/06/22 19:54:31 by jeportie          #+#    #+#             --
+--   Updated: 2025/06/22 19:54:34 by jeportie         ###   ########.fr       --
+--                                                                            --
+-- -------------------------------------------------------------------------- --
+
 -- [[ Basic Autocommands ]]
 local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
@@ -58,5 +69,22 @@ autocmd({ 'UIEnter', 'BufReadPost', 'BufNewFile' }, {
         end
       end)
     end
+  end,
+})
+
+-- Snippet that uses Neovim’s Lua API to dynamically turn your cursor highlighting
+-- on or off depending on which window you’re in
+autocmd({ "WinEnter", "BufEnter" }, {
+  callback = function()
+    if vim.bo.filetype ~= "minifiles" then
+      vim.wo.cursorline = true
+      vim.wo.cursorcolumn = true
+    end
+  end,
+})
+autocmd({ "WinLeave", "BufLeave" }, {
+  callback = function()
+    vim.wo.cursorline = false
+    vim.wo.cursorcolumn = false
   end,
 })
