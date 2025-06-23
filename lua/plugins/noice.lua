@@ -3,8 +3,14 @@ return {
   event = 'VeryLazy',
   opts = {
     lsp = {
+      -- tell Noice to intercept these LSP functions
+      override = {
+        ['vim.lsp.buf.signature_help'] = true,
+        ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+        ['vim.lsp.util.stylize_markdown'] = true,
+      },
       signature = {
-        enabled = false,
+        enabled = true,
       },
     },
     routes = {
@@ -19,3 +25,4 @@ return {
     'rcarriga/nvim-notify',
   },
 }
+

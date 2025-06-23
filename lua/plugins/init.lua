@@ -22,8 +22,9 @@ return {
   require 'plugins.volt',
 
   -- LSP and Autocompletion
+  require 'plugins.cmp',
   require 'plugins.lspconfig',
-  require 'plugins.autocompletion',
+  -- require 'plugins.autocompletion',
   require 'plugins.treesitter',
   require 'plugins.lspsaga',
   require 'plugins.todocomments',
@@ -36,6 +37,7 @@ return {
   require 'plugins.debug',
 
   -- Keymaps and UI Enhancements
+  require 'plugins.nvimtree',
   require 'plugins.noice',
   require 'plugins.guess-indent',
   require 'plugins.42-header',

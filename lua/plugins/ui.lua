@@ -26,11 +26,4 @@ return {
       return { override = require 'nvchad.icons.devicons' }
     end,
   },
-  {
-    "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    opts = function()
-      return require "plugins.nvimtree"
-    end,
-  },
 }
