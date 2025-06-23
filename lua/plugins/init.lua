@@ -6,7 +6,7 @@
 --   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
 --                                                +#+#+#+#+#+   +#+           --
 --   Created: 2025/06/21 12:03:51 by jeportie          #+#    #+#             --
---   Updated: 2025/06/22 19:04:16 by jeportie         ###   ########.fr       --
+--   Updated: 2025/06/23 23:46:41 by jeportie         ###   ########.fr       --
 --                                                                            --
 -- -------------------------------------------------------------------------- --
 
@@ -24,7 +24,7 @@ return {
   -- LSP and Autocompletion
   require 'plugins.cmp',
   require 'plugins.lspconfig',
-  -- require 'plugins.autocompletion',
+  require 'plugins.autocompletion',
   require 'plugins.treesitter',
   require 'plugins.lspsaga',
   require 'plugins.todocomments',

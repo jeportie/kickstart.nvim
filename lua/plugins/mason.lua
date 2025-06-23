@@ -1,37 +1,31 @@
 return {
-	"williamboman/mason.nvim",
-	dependencies = {
-		"williamboman/mason-lspconfig.nvim",
+{
+		"nvimtools/none-ls.nvim",
+		-- fire before any file is read so it can inject into LSP
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = function()
+			return require("custom.configs.null-ls")
+		end,
 	},
-	config = function()
-		require("mason").setup()
-
-		local mason_lspconfig = require("mason-lspconfig")
-		local uname = vim.loop.os_uname()
-		local servers
-
-		if uname.machine == "aarch64" then
-			servers = { "lua_ls", "bashls" }
-		else
-			servers = {
-				"clangd",
-				"zls",
-				"lua_ls",
-				"ts_ls",
-				"bashls",
-				"html",
-				"tailwindcss",
-				"cssls",
-				"jsonls",
-				"bashls",
-				"dockerls",
-				"yamlls",
-			}
-		end
-
-		mason_lspconfig.setup({
-			automatic_installation = true,
-			ensure_installed = servers
-		})
-	end,
+	{
+		"williamboman/mason.nvim",
+		dependencies = {
+			"williamboman/mason-lspconfig.nvim",
+		},
+		config = function()
+			require("mason").setup({
+				ui = {
+					icons = {
+						package_installed   = "",
+						package_pending     = "",
+						package_uninstalled = "",
+					},
+				},
+			})
+			require("mason-lspconfig").setup({
+				automatic_installation = true, -- Automatically install missing LSP servers
+			})
+		end,
+	},
 }
