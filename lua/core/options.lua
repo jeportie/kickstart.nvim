@@ -30,7 +30,7 @@ o.numberwidth         = 2          -- Minimal number of columns for line number
 o.cursorline          = true       -- Highlight the screen line of the cursor
 o.cursorlineopt       = "both"     -- Highlight both line and screen line
 o.signcolumn          = "yes"      -- Always show the sign column
-o.ruler               = true       -- Show the cursor position all the time
+o.ruler               = false       -- Show the cursor position all the time
 o.showbreak       = "↪  "                   -- String to put at line break
 o.list                = true       -- Show invisible characters
 o.listchars           = { tab = '» ', trail = '·', nbsp = '␣' }
@@ -45,7 +45,7 @@ o.smartindent         = true       -- Smart autoindenting on newline
 -- [[ Search ]] -------------------------------------------------------------
 o.ignorecase          = true       -- Case-insensitive search...
 o.smartcase           = true       -- ...unless search contains uppercase
-o.inccommand          = 'split'    -- Live preview of :substitute in a split
+-- o.inccommand          = 'split'    -- Live preview of :substitute in a split
 
 -- [[ Splits ]] -------------------------------------------------------------
 o.splitright          = true       -- New vertical splits go to the right

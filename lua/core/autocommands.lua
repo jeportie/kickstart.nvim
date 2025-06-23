@@ -78,13 +78,13 @@ autocmd({ "WinEnter", "BufEnter" }, {
   callback = function()
     if vim.bo.filetype ~= "minifiles" then
       vim.wo.cursorline = true
-      vim.wo.cursorcolumn = true
+      -- vim.wo.cursorcolumn = true
     end
   end,
 })
 autocmd({ "WinLeave", "BufLeave" }, {
   callback = function()
     vim.wo.cursorline = false
-    vim.wo.cursorcolumn = false
+    -- vim.wo.cursorcolumn = false
   end,
 })
