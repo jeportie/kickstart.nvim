@@ -1,0 +1,9 @@
+return {
+   -- Keymaps and UI Enhancements
+  require 'lua.plugins.ui.chadui',
+  require 'lua.plugins.ui.volt',
+  require 'lua.plugins.ui.nvimtree',
+  require 'lua.plugins.ui.noice',
+  require 'lua.plugins.ui.outline',
+  require 'lua.plugins.ui.guess-indent',
+}

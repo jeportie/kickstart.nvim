@@ -13,4 +13,5 @@
 return {
 	require 'lua.plugins.lint.conform',
 	require 'lua.plugins.lint.lint',
+	require 'lua.plugins.lint.autopairs',
 }

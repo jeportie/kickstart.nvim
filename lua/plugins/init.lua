@@ -19,13 +19,12 @@ return {
   require 'plugins.whichkey',
   require 'plugins.telescope',
   require 'plugins.lazydev',
-  require 'plugins.guess-indent',
   require 'plugins.42-header',
 
   -- LSP / DAP / FORMAT / LINT
   require 'plugins.lsp',
+  require 'plugins.lint',
   require 'plugins.treesitter',
-  require 'plugins.autopairs',
   require 'plugins.dap',
 
   -- Git and Version Control
@@ -33,10 +32,6 @@ return {
 
   -- Keymaps and UI Enhancements
   require 'plugins.ui',
-  require 'plugins.volt',
-  require 'plugins.nvimtree',
-  require 'plugins.noice',
-  require 'plugins.outline',
   require 'plugins.helpview',
   require 'plugins.indent_line',
   require 'plugins.todocomments',

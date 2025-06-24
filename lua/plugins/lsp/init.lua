@@ -16,5 +16,4 @@ return {
   require 'lua.plugins.lsp.lspsaga',
   require 'lua.plugins.lsp.cmp',
   require 'lua.plugins.lsp.autocompletion',
-  require 'lua.plugins.lsp.lint',
 }
