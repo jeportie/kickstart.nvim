@@ -1,12 +1,21 @@
+-- -------------------------------------------------------------------------- --
+--                                                                            --
+--                                                        :::      ::::::::   --
+--   lspconfig.lua                                      :+:      :+:    :+:   --
+--                                                    +:+ +:+         +:+     --
+--   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
+--                                                +#+#+#+#+#+   +#+           --
+--   Created: 2025/06/24 18:40:20 by jeportie          #+#    #+#             --
+--   Updated: 2025/06/24 18:59:22 by jeportie         ###   ########.fr       --
+--                                                                            --
+-- -------------------------------------------------------------------------- --
+
 return {
   -- Main LSP Configuration
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     -- Mason must be loaded before its dependents so we need to set it up here.
-    { 'mason-org/mason.nvim', opts = {} },
-    'mason-org/mason-lspconfig.nvim',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
 
     -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },
@@ -137,34 +146,34 @@ return {
     local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     local servers = {
-	   clangd = {},           -- C/C++
- 	   pyright = {},          -- Python
- 	   rust_analyzer = {},    -- Rust
+      clangd = {}, -- C/C++
+      pyright = {}, -- Python
+      rust_analyzer = {}, -- Rust
 
- 	   lua_ls = {             -- Lua
- 	     settings = {
- 	       Lua = {
- 	         completion = {
- 	           callSnippet = 'Replace',
- 	         },
- 	         diagnostics = {
- 	           disable = { 'missing-fields' },
- 	         },
- 	       },
- 	     },
- 	   },
+      lua_ls = { -- Lua
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = 'Replace',
+            },
+            diagnostics = {
+              disable = { 'missing-fields' },
+            },
+          },
+        },
+      },
 
- 	   bashls = {},           -- Bash
- 	   cmake = {},            -- CMake
- 	   zls = {},              -- Zig
- 	   ts_ls = {},            -- TypeScript / JavaScript
- 	   html = {},             -- HTML
- 	   tailwindcss = {},      -- Tailwind CSS
- 	   cssls = {},            -- CSS
- 	   jsonls = {},           -- JSON
- 	   dockerls = {},         -- Dockerfile
- 	   yamlls = {},           -- YAML
-	}
+      bashls = {}, -- Bash
+      cmake = {}, -- CMake
+      zls = {}, -- Zig
+      ts_ls = {}, -- TypeScript / JavaScript
+      html = {}, -- HTML
+      tailwindcss = {}, -- Tailwind CSS
+      cssls = {}, -- CSS
+      jsonls = {}, -- JSON
+      dockerls = {}, -- Dockerfile
+      yamlls = {}, -- YAML
+    }
 
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
@@ -172,18 +181,18 @@ return {
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
     })
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+    -- require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-    require('mason-lspconfig').setup {
-      ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-      automatic_installation = false,
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
-        end,
-      },
-    }
+    -- require('mason-lspconfig').setup {
+    --   ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+    --   automatic_installation = false,
+    --   handlers = {
+    --     function(server_name)
+    --       local server = servers[server_name] or {}
+    --       server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+    --       require('lspconfig')[server_name].setup(server)
+    --     end,
+    --   },
+    -- }
   end,
 }
