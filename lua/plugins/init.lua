@@ -22,14 +22,14 @@ return {
   require 'plugins.guess-indent',
   require 'plugins.42-header',
 
-  -- LSP and Autocompletion
+  -- LSP / DAP / FORMAT / LINT
   require 'plugins.lsp',
   require 'plugins.treesitter',
   require 'plugins.autopairs',
+  require 'plugins.dap',
 
   -- Git and Version Control
   require 'plugins.gitsigns',
-  require 'plugins.debug',
 
   -- Keymaps and UI Enhancements
   require 'plugins.ui',

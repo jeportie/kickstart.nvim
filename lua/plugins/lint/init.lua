@@ -11,5 +11,6 @@
 -- -------------------------------------------------------------------------- --
 
 return {
-	require 'lua.plugins.lsp.conform',
+	require 'lua.plugins.lint.conform',
+	require 'lua.plugins.lint.lint',
 }
