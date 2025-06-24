@@ -6,4 +6,7 @@ return {
   require 'lua.plugins.ui.noice',
   require 'lua.plugins.ui.outline',
   require 'lua.plugins.ui.indent_line',
+  require 'lua.plugins.ui.gitsigns',
+  require 'lua.plugins.ui.helpview',
+  require 'lua.plugins.ui.todocomments',
 }

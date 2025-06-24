@@ -27,13 +27,8 @@ return {
   require 'plugins.treesitter',
   require 'plugins.dap',
 
-  -- Git and Version Control
-  require 'plugins.gitsigns',
-
   -- Keymaps and UI Enhancements
   require 'plugins.ui',
-  require 'plugins.helpview',
-  require 'plugins.todocomments',
 
   -- AI Plugins
   -- require 'plugins.ia.copyrightavante',
