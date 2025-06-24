@@ -1,4 +1,4 @@
-dofile(vim.g.base46_cache .. "telescope")
+dofile(vim.g.base46_cache .. 'telescope')
 
 return { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
@@ -17,6 +17,59 @@ return { -- Highlight, edit, and navigate code
       additional_vim_regex_highlighting = { 'ruby' },
     },
     indent = { enable = true, disable = { 'ruby' } },
+
+    -- 1. Folding with Tree-sitter
+    fold = {
+      enable = true,
+    },
+
+    -- 2. Incremental Selection
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = 'gnn',
+        node_incremental = 'grn',
+        scope_incremental = 'grc',
+        node_decremental = 'grm',
+      },
+    },
+
+    -- 3. Text Objects
+    textobjects = {
+      select = {
+        enable = true,
+        lookahead = true,
+        keymaps = {
+          ['af'] = '@function.outer',
+          ['if'] = '@function.inner',
+          ['ac'] = '@class.outer',
+          ['ic'] = '@class.inner',
+        },
+      },
+    },
+
+    -- 4. Playground for Queries
+    playground = {
+      enable = true,
+      updatetime = 25,
+      persist_queries = false,
+    },
+
+    -- 5. Rainbow Delimiters
+    rainbow = {
+      enable = true,
+      extended_mode = true,
+    },
+
+    -- 6. Refactoring Tools
+    refactor = {
+      highlight_definitions = { enable = true },
+      highlight_current_scope = { enable = false },
+      smart_rename = {
+        enable = true,
+        keymaps = { smart_rename = 'grr' },
+      },
+    },
   },
   -- There are additional nvim-treesitter modules that you can use to interact
   -- with nvim-treesitter. You should go explore a few and see what interests you:
