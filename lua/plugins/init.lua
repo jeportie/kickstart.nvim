@@ -11,25 +11,19 @@
 -- -------------------------------------------------------------------------- --
 
 return {
-  -- Suite
   require 'plugins.mini',
   require 'plugins.snacks',
-
-  -- General Utilities
-  require 'plugins.whichkey',
-  require 'plugins.telescope',
-  require 'plugins.lazydev',
-  require 'plugins.42-header',
-
-  -- LSP / DAP / FORMAT / LINT
+  require 'plugins.ui',
   require 'plugins.lsp',
   require 'plugins.lint',
+  require 'plugins.tools',
+
+  -- General Utilities
+  require 'plugins.telescope',
   require 'plugins.treesitter',
   require 'plugins.dap',
 
-  -- Keymaps and UI Enhancements
-  require 'plugins.ui',
-
+  -- require 'plugins.ia',
   -- AI Plugins
   -- require 'plugins.ia.copyrightavante',
   -- require 'plugins.ia.mcphub',

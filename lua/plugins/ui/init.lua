@@ -9,4 +9,5 @@ return {
   require 'lua.plugins.ui.gitsigns',
   require 'lua.plugins.ui.helpview',
   require 'lua.plugins.ui.todocomments',
+  require 'lua.plugins.ui.whichkey',
 }
