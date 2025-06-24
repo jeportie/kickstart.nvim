@@ -18,4 +18,4 @@ g.have_nerd_font = true
 
 require 'core.init'
 require('lazy').setup(require 'plugins')
-require 'base64'
+require 'base46'
