@@ -85,4 +85,4 @@ local options = {
   },
 }
 
-return vim.tbl_deep_extend('force', options, require 'plugins.cmp')
+return vim.tbl_deep_extend('force', options, require 'lua.plugins.lsp.cmp')

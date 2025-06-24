@@ -5,17 +5,16 @@
 --                                                    +:+ +:+         +:+     --
 --   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
 --                                                +#+#+#+#+#+   +#+           --
---   Created: 2025/06/22 18:35:44 by jeportie          #+#    #+#             --
---   Updated: 2025/06/22 19:48:11 by jeportie         ###   ########.fr       --
+--   Created: 2025/06/24 12:26:32 by jeportie          #+#    #+#             --
+--   Updated: 2025/06/24 14:44:38 by jeportie         ###   ########.fr       --
 --                                                                            --
 -- -------------------------------------------------------------------------- --
 
-local g = vim.g
-
--- ----------------------------------- globals ------------------------------ --
-g.toggle_theme_icon = '   '
-g.have_nerd_font = true
-
-require 'core.init'
-require('lazy').setup(require 'plugins')
-require 'plugins.base64'
+return {
+  require 'lua.plugins.lsp.mason',
+  require 'lua.plugins.lsp.lspconfig',
+  require 'lua.plugins.lsp.lspsaga',
+  require 'lua.plugins.lsp.cmp',
+  require 'lua.plugins.lsp.autocompletion',
+  require 'lua.plugins.lsp.lint',
+}

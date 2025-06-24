@@ -5,7 +5,7 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = function()
-			return require("custom.configs.null-ls")
+			return require("plugin_config.null-ls")
 		end,
 	},
 	{

@@ -59,9 +59,9 @@ end, { desc = 'whichkey query lookup' })
 vim.keymap.set('n', '<Leader>cc', ':set colorcolumn=80<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>ncc', ':set colorcolumn-=80<CR>', { noremap = true, silent = true })
 
-map('n', '<leader>fm', function()
-  require('conform').format { lsp_fallback = true }
-end, { desc = 'general format file' })
+-- map('n', '<leader>fm', function()
+--   require('plugins.').format { lsp_fallback = true }
+-- end, { desc = 'general format file' })
 
 -- global lsp mappings
 map('n', '<leader>ds', vim.diagnostic.setloclist, { desc = 'LSP diagnostic loclist' })

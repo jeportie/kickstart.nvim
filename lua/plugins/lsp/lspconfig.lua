@@ -138,7 +138,6 @@ return {
 
     local servers = {
 	   clangd = {},           -- C/C++
- 	   gopls = {},            -- Go
  	   pyright = {},          -- Python
  	   rust_analyzer = {},    -- Rust
 
