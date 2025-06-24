@@ -89,7 +89,6 @@ autocmd({ 'WinLeave', 'BufLeave' }, {
   end,
 })
 
--- at the bottom of autocommands.lua
 local tree_arrows = vim.api.nvim_create_augroup('MyNvimTreeArrows', { clear = true })
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -106,5 +105,19 @@ vim.api.nvim_create_autocmd('FileType', {
       buffer = buf,
       desc = 'nvim-tree: cd into node',
     })
+  end,
+})
+
+local outline_arrows = vim.api.nvim_create_augroup('MySymbolsOutlineArrows', { clear = true })
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'Outline', -- symbols-outline uses ft=Outline
+  group = outline_arrows,
+  callback = function(args)
+    local buf = args.buf
+    -- ↑ to go to previous symbol
+    vim.keymap.set('n', '<Up>', 'k', { buffer = buf, desc = 'symbols-outline: move up' })
+    -- ↓ to go to next symbol
+    vim.keymap.set('n', '<Down>', 'j', { buffer = buf, desc = 'symbols-outline: move down' })
   end,
 })
