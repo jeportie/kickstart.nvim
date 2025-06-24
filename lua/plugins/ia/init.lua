@@ -1,4 +1,4 @@
 return {
-  -- require 'lua.plugins.ia.copyrightavante',
-  -- require 'lua.plugins.ia.mcphub',
+  -- require 'plugins.ia.copyrightavante',
+  -- require 'plugins.ia.mcphub',
 }

@@ -1,7 +1,7 @@
 return {
-  require 'lua.plugins.tools.42-header',
-  require 'lua.plugins.tools.mason',
-  require 'lua.plugins.tools.telescope',
-  require 'lua.plugins.tools.treesitter',
-  require 'lua.plugins.tools.dap',
+  require 'plugins.tools.42-header',
+  require 'plugins.tools.mason',
+  require 'plugins.tools.telescope',
+  require 'plugins.tools.treesitter',
+  require 'plugins.tools.dap',
 }

@@ -11,8 +11,8 @@
 -- -------------------------------------------------------------------------- --
 
 return {
-  require 'lua.plugins.format.conform',
-  require 'lua.plugins.format.lint',
-  require 'lua.plugins.format.autopairs',
-  require 'lua.plugins.format.guess-indent',
+  require 'plugins.format.conform',
+  require 'plugins.format.lint',
+  require 'plugins.format.autopairs',
+  require 'plugins.format.guess-indent',
 }

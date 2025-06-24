@@ -1,15 +1,15 @@
 dofile(vim.g.base46_cache .. 'mason')
 
 return {
-  {
-    'nvimtools/none-ls.nvim',
-    -- fire before any file is read so it can inject into LSP
-    event = { 'BufReadPre', 'BufNewFile' },
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = function()
-      return require 'plugin_config.null-ls'
-    end,
-  },
+  -- {
+  --   'nvimtools/none-ls.nvim',
+  --   -- fire before any file is read so it can inject into LSP
+  --   event = { 'BufReadPre', 'BufNewFile' },
+  --   dependencies = { 'nvim-lua/plenary.nvim' },
+  --   opts = function()
+  --     return require 'plugin_config.null-ls'
+  --   end,
+  -- },
   {
     'williamboman/mason.nvim',
     event = { 'BufReadPre', 'BufNewFile', 'VimEnter' },
@@ -21,7 +21,6 @@ return {
     },
     config = function()
       require('mason').setup {
-        PATH = 'skip',
         max_concurrent_installers = 10,
         ui = {
           icons = {

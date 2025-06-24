@@ -11,10 +11,10 @@
 -- -------------------------------------------------------------------------- --
 
 return {
-  require 'lua.plugins.lsp.lspconfig',
-  require 'lua.plugins.lsp.lspsaga',
-  require 'lua.plugins.lsp.cmp',
-  require 'lua.plugins.lsp.autocompletion',
-  require 'lua.plugins.lsp.lazydev',
-  require 'lua.plugins.lsp.luasnip',
+  require 'plugins.lsp.lspconfig',
+  require 'plugins.lsp.lspsaga',
+  require 'plugins.lsp.cmp',
+  require 'plugins.lsp.autocompletion',
+  require 'plugins.lsp.lazydev',
+  require 'plugins.lsp.luasnip',
 }
