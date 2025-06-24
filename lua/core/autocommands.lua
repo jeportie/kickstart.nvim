@@ -89,40 +89,9 @@ autocmd({ "WinLeave", "BufLeave" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function(args)
-    require("conform").format({ bufnr = args.buf })
-  end,
-})
-
--- create a group so we can clear/reload it safely
-local ibl_mode_grp = vim.api.nvim_create_augroup('IndentBlanklineModeColor', { clear = true })
-
--- helper to set both indent-blankline highlight groups
-local function set_ibl_color(hex)
-  vim.api.nvim_set_hl(0, 'IblChar',      { fg = hex })
-  vim.api.nvim_set_hl(0, 'IblScopeChar', { fg = hex })
-end
-
--- initialize to Normal mode color (green)
-set_ibl_color('#00ff00')
-
--- watch for any mode change
-vim.api.nvim_create_autocmd('ModeChanged', {
-  group   = ibl_mode_grp,
-  pattern = '*',
-  callback = function()
-    local m = vim.fn.mode()
-    if m:match('^i') then
-      -- Insert
-      set_ibl_color('#0000ff')
-    elseif m:match('^v') or m == 'V' or m == '\22' then
-      -- Visual / Visual-Line / Visual-Block
-      set_ibl_color('#ff0000')
-    else
-      -- Normal, Operator-pending, Replace, etc. → green
-      set_ibl_color('#00ff00')
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = "*",
+--   callback = function(args)
+--     require("conform").format({ bufnr = args.buf })
+--   end,
+-- })
