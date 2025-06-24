@@ -14,5 +14,5 @@ return {
   require 'lua.plugins.lint.conform',
   require 'lua.plugins.lint.lint',
   require 'lua.plugins.lint.autopairs',
-  require 'lua.plugins.guess-indent',
+  require 'lua.plugins.lint.guess-indent',
 }

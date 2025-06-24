@@ -5,4 +5,5 @@ return {
   require 'lua.plugins.ui.nvimtree',
   require 'lua.plugins.ui.noice',
   require 'lua.plugins.ui.outline',
+  require 'lua.plugins.ui.indent_line',
 }

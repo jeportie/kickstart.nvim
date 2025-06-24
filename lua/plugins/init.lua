@@ -33,7 +33,6 @@ return {
   -- Keymaps and UI Enhancements
   require 'plugins.ui',
   require 'plugins.helpview',
-  require 'plugins.indent_line',
   require 'plugins.todocomments',
 
   -- AI Plugins
