@@ -37,6 +37,6 @@ return {
   require 'plugins.todocomments',
 
   -- AI Plugins
-  -- require 'plugins.avante',
-  -- require 'plugins.mcphub',
+  -- require 'plugins.ia.copyrightavante',
+  -- require 'plugins.ia.mcphub',
 }
