@@ -6,7 +6,7 @@
 --   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
 --                                                +#+#+#+#+#+   +#+           --
 --   Created: 2025/06/21 12:03:51 by jeportie          #+#    #+#             --
---   Updated: 2025/06/24 19:03:33 by jeportie         ###   ########.fr       --
+--   Updated: 2025/06/24 20:08:17 by jeportie         ###   ########.fr       --
 --                                                                            --
 -- -------------------------------------------------------------------------- --
 
@@ -15,7 +15,7 @@ return {
   require 'plugins.snacks',
   require 'plugins.ui',
   require 'plugins.lsp',
-  require 'plugins.lint',
+  require 'plugins.format',
   require 'plugins.tools',
 
   -- General Utilities

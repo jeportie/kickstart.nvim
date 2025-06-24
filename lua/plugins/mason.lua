@@ -44,7 +44,8 @@ return {
       require('mason-nvim-dap').setup {
         automatic_installation = true,
         ensure_installed = {
-          'delve', -- go debugger
+          'codelldb',
+          'bash-debug-adapter',
           -- add other debug adapters here
         },
       }
