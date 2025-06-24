@@ -74,17 +74,37 @@ autocmd({ 'UIEnter', 'BufReadPost', 'BufNewFile' }, {
 
 -- Snippet that uses Neovim’s Lua API to dynamically turn your cursor highlighting
 -- on or off depending on which window you’re in
-autocmd({ "WinEnter", "BufEnter" }, {
+autocmd({ 'WinEnter', 'BufEnter' }, {
   callback = function()
-    if vim.bo.filetype ~= "minifiles" then
+    if vim.bo.filetype ~= 'minifiles' then
       vim.wo.cursorline = true
       -- vim.wo.cursorcolumn = true
     end
   end,
 })
-autocmd({ "WinLeave", "BufLeave" }, {
+autocmd({ 'WinLeave', 'BufLeave' }, {
   callback = function()
     vim.wo.cursorline = false
     -- vim.wo.cursorcolumn = false
+  end,
+})
+
+-- at the bottom of autocommands.lua
+local tree_arrows = vim.api.nvim_create_augroup('MyNvimTreeArrows', { clear = true })
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'NvimTree',
+  group = tree_arrows,
+  callback = function(args)
+    local buf = args.buf
+    local api = require 'nvim-tree.api'
+    -- ↥ / ↧ to move up/down in the tree
+    vim.keymap.set('n', '<Up>', 'k', { buffer = buf, desc = 'nvim-tree: move up' })
+    vim.keymap.set('n', '<Down>', 'j', { buffer = buf, desc = 'nvim-tree: move down' })
+    -- <leader> to cd into the selected folder (same as 2-RightMouse → CD)
+    vim.keymap.set('n', '+', api.tree.change_root_to_node, {
+      buffer = buf,
+      desc = 'nvim-tree: cd into node',
+    })
   end,
 })
