@@ -82,16 +82,16 @@ map('n', '<leader>x', function()
 end, { desc = 'buffer close' })
 
 -- terminal
-map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
+map('t', '<C-x>', '<C-\\><C-N>', { desc = 'terminal escape terminal mode' })
 
 -- new terminals
-map("n", "<leader>h", function()
-  require("nvchad.term").new { pos = "sp" }
-end, { desc = "terminal new horizontal term" })
+map('n', '<leader>h', function()
+  require('nvchad.term').new { pos = 'sp' }
+end, { desc = 'terminal new horizontal term' })
 
-map("n", "<leader>v", function()
-  require("nvchad.term").new { pos = "vsp" }
-end, { desc = "terminal new vertical term" })
+map('n', '<leader>v', function()
+  require('nvchad.term').new { pos = 'vsp' }
+end, { desc = 'terminal new vertical term' })
 
 -- toggleable
 map({ 'n', 't' }, '<A-v>', function()
@@ -111,16 +111,19 @@ map('n', '<C-n>', '<cmd>NvimTreeToggle<CR>', { desc = 'nvimtree toggle window' }
 map('n', '<leader>e', '<cmd>NvimTreeFocus<CR>', { desc = 'nvimtree focus window' })
 
 -- nvchad
-map("n", "<leader>th", function()
-  require("nvchad.themes").open()
-end, { desc = "telescope nvchad themes" })
+map('n', '<leader>th', function()
+  require('nvchad.themes').open()
+end, { desc = 'telescope nvchad themes' })
 
 map('n', '<leader>ch', ':NvCheatsheet<CR>', { noremap = true, silent = true })
 
 map('n', '<leader>DB', function()
-    require('snacks.dashboard').open()
+  require('snacks.dashboard').open()
 end, {
   noremap = true,
-  silent  = true,
-  desc    = 'Toggle Dashboard ⟷ Last Buffer',
+  silent = true,
+  desc = 'Toggle Dashboard ⟷ Last Buffer',
 })
+
+-- Lspsaga
+map('n', 'pd', '<Cmd>Lspsaga peek_definition<CR>', { buffer = true, silent = true })
