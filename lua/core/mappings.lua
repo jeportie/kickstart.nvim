@@ -6,9 +6,11 @@
 --   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
 --                                                +#+#+#+#+#+   +#+           --
 --   Created: 2025/06/22 19:55:03 by jeportie          #+#    #+#             --
---   Updated: 2025/06/22 19:55:05 by jeportie         ###   ########.fr       --
+--   Updated: 2025/06/28 01:00:30 by jeportie         ###   ########.fr       --
 --                                                                            --
 -- -------------------------------------------------------------------------- --
+
+local opts = { noremap = true, silent = true }
 
 -- [[ Basic Keymaps ]]
 local map = vim.keymap.set
@@ -126,4 +128,11 @@ end, {
 })
 
 -- Lspsaga
-map('n', 'pd', '<Cmd>Lspsaga peek_definition<CR>', { buffer = true, silent = true })
+
+----- File Navigation -----
+opts.desc = 'Open Mini Files'
+map('n', '<leader>e', function()
+  require('mini.files').open()
+  vim.wo.cursorline = false
+  vim.wo.cursorcolumn = false
+end, opts)

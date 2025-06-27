@@ -11,5 +11,8 @@ return {
     require('lspsaga').setup {
       -- Your lspsaga configuration options go here.
     }
+    -- 2. Add your buffer-local keymap for peek_definition
+    --    We're using vim.keymap.set; if you have a 'map' wrapper, swap this out accordingly.
+    vim.keymap.set('n', '<leader>dp', '<Cmd>Lspsaga peek_definition<CR>', { buffer = true, silent = true })
   end,
 }

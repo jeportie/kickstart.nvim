@@ -6,7 +6,7 @@
 --   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
 --                                                +#+#+#+#+#+   +#+           --
 --   Created: 2025/06/27 10:56:27 by jeportie          #+#    #+#             --
---   Updated: 2025/06/27 12:00:59 by jeportie         ###   ########.fr       --
+--   Updated: 2025/06/28 00:51:06 by jeportie         ###   ########.fr       --
 --                                                                            --
 -- -------------------------------------------------------------------------- --
 
@@ -24,9 +24,7 @@ return {
       'rafamadriz/friendly-snippets',
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lua',
-      'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-calc',
-      'hrsh7th/cmp-emoji',
       'uga-rosa/cmp-dictionary',
       'hrsh7th/cmp-omni',
     },
@@ -49,17 +47,13 @@ return {
           'path',
           'snippets',
           'buffer',
-          'cmdline',
           'calc',
-          'emoji',
           'dictionary',
           'omni',
         },
 
         providers = {
-          cmdline = { name = 'cmdline', module = 'blink.compat.source' },
           calc = { name = 'calc', module = 'blink.compat.source' },
-          emoji = { name = 'emoji', module = 'blink.compat.source' },
           dictionary = { name = 'dictionary', module = 'blink.compat.source' },
           omni = { name = 'omni', module = 'blink.compat.source' },
         },
