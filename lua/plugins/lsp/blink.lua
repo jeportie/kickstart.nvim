@@ -22,34 +22,33 @@ return {
     version = '1.*',
     dependencies = {
       'rafamadriz/friendly-snippets',
+      'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lua',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-calc',
       'hrsh7th/cmp-emoji',
       'uga-rosa/cmp-dictionary',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-omni',
     },
     opts = {
-      keymap = { preset = 'enter' },
+      keymap = {
+        preset = 'enter',
+        ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        ['<C-e>'] = { 'hide' },
+        -- arrow keys, same as <C-p>/<C-n>
+        ['<Up>'] = { 'select_prev', 'fallback' },
+        ['<Down>'] = { 'select_next', 'fallback' },
+      },
       appearance = { nerd_font_variant = 'mono' },
       completion = {
         documentation = { auto_show = true, auto_show_delay_ms = 500 },
       },
       sources = {
         default = {
-          'lazydev',
           'lsp',
           'path',
           'snippets',
           'buffer',
-          'nvim_lua',
-          'nvim_lsp',
-          'buffer',
-          'path',
           'cmdline',
           'calc',
           'emoji',
@@ -57,24 +56,7 @@ return {
           'omni',
         },
 
-        keymap = {
-          -- scroll documentation
-          ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-          ['<C-e>'] = { 'hide' },
-          -- arrow keys, same as <C-p>/<C-n>
-          ['<Up>'] = { 'select_prev', 'fallback' },
-          ['<Down>'] = { 'select_next', 'fallback' },
-        },
         providers = {
-          lazydev = {
-            name = 'LazyDev', -- display name in the menu
-            module = 'lazydev.integrations.blink', -- the actual Lua module to require
-            score_offset = 100,
-          },
-          nvim_lua = { name = 'nvim_lua', module = 'blink.compat.source' },
-          nvim_lsp = { name = 'nvim_lsp', module = 'blink.compat.source' },
-          buffer = { name = 'buffer', module = 'blink.compat.source' },
-          path = { name = 'path', module = 'blink.compat.source' },
           cmdline = { name = 'cmdline', module = 'blink.compat.source' },
           calc = { name = 'calc', module = 'blink.compat.source' },
           emoji = { name = 'emoji', module = 'blink.compat.source' },
