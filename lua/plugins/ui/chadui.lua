@@ -14,11 +14,6 @@ return {
       require 'nvchad'
     end,
   },
-
-  'nvzone/volt',
-  'nvzone/menu',
-  { 'nvzone/minty', cmd = { 'Huefy', 'Shades' } },
-
   {
     'nvim-tree/nvim-web-devicons',
     opts = function()

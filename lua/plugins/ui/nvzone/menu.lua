@@ -1,9 +1,4 @@
-return { 'nvzone/volt', lazy = true }, {
-  'nvzone/typr',
-  dependencies = 'nvzone/volt',
-  opts = {},
-  cmd = { 'Typr', 'TyprStats' },
-}, {
+return {
   'nvzone/menu',
   lazy = false, -- load always
   keys = {
@@ -26,7 +21,4 @@ return { 'nvzone/volt', lazy = true }, {
       desc = 'Open menu (mouse)',
     },
   },
-}, {
-  'nvzone/minty',
-  cmd = { 'Shades', 'Huefy' },
 }
