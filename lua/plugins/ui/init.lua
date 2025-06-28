@@ -3,7 +3,6 @@ return {
   require 'plugins.ui.volt',
   require 'plugins.ui.nvimtree',
   require 'plugins.ui.noice',
-  require 'plugins.ui.outline',
   require 'plugins.ui.indent_line',
   require 'plugins.ui.gitsigns',
   require 'plugins.ui.helpview',
