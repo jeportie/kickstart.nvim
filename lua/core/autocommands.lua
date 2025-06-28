@@ -23,28 +23,28 @@ autocmd('TextYankPost', {
   end,
 })
 
--- Set the CursorHold trigger time to 2000ms (2 seconds)
-vim.o.updatetime = 1500
-
--- Show LSP hover after idle
-autocmd('CursorHold', {
-  pattern = '*',
-  callback = function()
-    if vim.lsp.buf.hover then
-      vim.lsp.buf.hover()
-    end
-  end,
-})
-
--- Automatically close any floating hover window when the cursor moves.
-autocmd('CursorMoved', {
-  pattern = '*',
-  callback = function()
-    if vim.lsp and vim.lsp.util and vim.lsp.util.close_floating_preview then
-      vim.lsp.util.close_floating_preview()
-    end
-  end,
-})
+-- -- Set the CursorHold trigger time to 2000ms (2 seconds)
+-- vim.o.updatetime = 2000
+--
+-- -- Show LSP hover after idle
+-- autocmd('CursorHold', {
+--   pattern = '*',
+--   callback = function()
+--     if vim.lsp.buf.hover then
+--       vim.lsp.buf.hover()
+--     end
+--   end,
+-- })
+--
+-- -- Automatically close any floating hover window when the cursor moves.
+-- autocmd('CursorMoved', {
+--   pattern = '*',
+--   callback = function()
+--     if vim.lsp and vim.lsp.util and vim.lsp.util.close_floating_preview then
+--       vim.lsp.util.close_floating_preview()
+--     end
+--   end,
+-- })
 
 -- user event that loads after UIEnter + only if file buf is there
 autocmd({ 'UIEnter', 'BufReadPost', 'BufNewFile' }, {

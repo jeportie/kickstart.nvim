@@ -2,7 +2,7 @@ return {
   'simrat39/symbols-outline.nvim',
   cmd = 'SymbolsOutline', -- load when the command is used
   keys = {
-    { '<leader>so', '<cmd>SymbolsOutline<CR>', desc = 'Toggle Symbols Outline' },
+    { '<leader>ss', '<cmd>SymbolsOutline<CR>', desc = 'Toggle Symbols Outline' },
   },
   config = function()
     require('symbols-outline').setup {
