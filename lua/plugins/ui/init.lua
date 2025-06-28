@@ -1,12 +1,7 @@
 return {
   -- Keymaps and UI Enhancements
-  -- nvzone
-  -- require 'plugins.ui.volt',
-  -- require 'plugins.ui.typr',
-  -- require 'plugins.ui.menu',
-  -- require 'plugins.ui.minty',
-
   require 'plugins.ui.nvzone',
+  require 'plugins.ui.nvchad',
 
   require 'plugins.ui.nvimtree',
   require 'plugins.ui.noice',
