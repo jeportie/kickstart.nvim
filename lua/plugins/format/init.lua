@@ -15,4 +15,5 @@ return {
   require 'plugins.format.lint',
   require 'plugins.format.autopairs',
   require 'plugins.format.guess-indent',
+  require 'plugins.format.treesitter',
 }

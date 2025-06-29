@@ -19,4 +19,5 @@ return {
   require 'plugins.format',
   require 'plugins.tools',
   require 'plugins.ia',
+  require 'plugins.navigation',
 }
