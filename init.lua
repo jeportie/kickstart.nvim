@@ -6,7 +6,7 @@
 --   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
 --                                                +#+#+#+#+#+   +#+           --
 --   Created: 2025/06/22 18:35:44 by jeportie          #+#    #+#             --
---   Updated: 2025/06/22 19:48:11 by jeportie         ###   ########.fr       --
+--   Updated: 2025/06/29 11:45:23 by jeportie         ###   ########.fr       --
 --                                                                            --
 -- -------------------------------------------------------------------------- --
 
@@ -47,11 +47,6 @@ require 'core.init'
 require('lazy').setup(require 'plugins')
 
 -- load NVChad’s cached highlights (Base46)
--- g.base46_cache = vim.fn.stdpath 'data' .. '/base46_cache/'
--- dofile(g.base46_cache .. 'defaults') -- default highlights
--- dofile(g.base46_cache .. 'statusline') -- statusline highlights
-
--- or, to load all at once:
 for _, f in ipairs(vim.fn.readdir(g.base46_cache)) do
   dofile(g.base46_cache .. f)
 end
