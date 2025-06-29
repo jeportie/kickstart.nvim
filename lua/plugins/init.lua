@@ -20,4 +20,5 @@ return {
   require 'plugins.tools',
   require 'plugins.ia',
   require 'plugins.navigation',
+  require 'plugins.custom',
 }
