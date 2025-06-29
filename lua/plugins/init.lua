@@ -13,6 +13,7 @@
 return {
   require 'plugins.mini',
   require 'plugins.snacks',
+  require 'plugins.nvchad',
   require 'plugins.ui',
   require 'plugins.lsp',
   require 'plugins.format',
