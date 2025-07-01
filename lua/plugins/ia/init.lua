@@ -1,4 +1,4 @@
 return {
-  -- require 'plugins.ia.copyrightavante',
+  require 'plugins.ia.avante',
   -- require 'plugins.ia.mcphub',
 }

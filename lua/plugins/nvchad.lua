@@ -3,8 +3,18 @@ return {
   {
     'nvim-tree/nvim-web-devicons',
     opts = function()
-      dofile(vim.g.base46_cache .. 'devicons')
-      return { override = require 'nvchad.icons.devicons' }
+      -- define your override table inline, including the CSS icon
+      local icons = {
+        default_icon = { icon = '󰈚', name = 'Default' },
+        js = { icon = '󰌞', name = 'js' },
+        ts = { icon = '󰛦', name = 'ts' },
+        lock = { icon = '󰌾', name = 'lock' },
+        ['robots.txt'] = { icon = '󰚩', name = 'robots' },
+        css = { icon = '', name = 'css', color = '#1572B6' },
+        -- you can keep adding other overrides here...
+      }
+
+      return { override = icons }
     end,
   },
   {

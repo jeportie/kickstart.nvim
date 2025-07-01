@@ -16,15 +16,15 @@ return {
         },
       },
     },
-    system_prompt = function()
-      local hub = require('mcphub').get_hub_instance()
-      return hub:get_active_servers_prompt()
-    end,
-    custom_tools = function()
-      return {
-        require('mcphub.extensions.avante').mcp_tool(),
-      }
-    end,
+    -- system_prompt = function()
+    --   local hub = require('mcphub').get_hub_instance()
+    --   return hub:get_active_servers_prompt()
+    -- end,
+    -- custom_tools = function()
+    --   return {
+    --     require('mcphub.extensions.avante').mcp_tool(),
+    --   }
+    -- end,
     -- add any other avante configuration options below
   },
   build = 'make',
