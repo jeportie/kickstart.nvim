@@ -36,7 +36,7 @@ o.list = true -- Show invisible characters
 o.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- [[ Indentation ]] --------------------------------------------------------
-o.expandtab = false -- Use actual tab characters
+o.expandtab = true -- Use space characters
 o.shiftwidth = 4 -- Size for autoindent
 o.tabstop = 4 -- Number of spaces tabs count for
 o.softtabstop = 4 -- Number of spaces for <Tab> in insert mode

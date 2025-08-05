@@ -36,6 +36,9 @@ return {
         -- arrow keys, same as <C-p>/<C-n>
         ['<Up>'] = { 'select_prev', 'fallback' },
         ['<Down>'] = { 'select_next', 'fallback' },
+        -- tab highjack
+        ['<Tab>'] = { 'snippet_forward', 'fallback' },
+        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
       },
       appearance = { nerd_font_variant = 'mono' },
       completion = {

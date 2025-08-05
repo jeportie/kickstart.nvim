@@ -14,7 +14,6 @@ return {
   require 'plugins.lsp.lspconfig',
   require 'plugins.lsp.lspsaga',
   require 'plugins.lsp.blink',
-  -- require 'plugins.lsp.cmp',
   require 'plugins.lsp.lazydev',
   require 'plugins.lsp.luasnip',
   require 'plugins.lsp.null-ls',
