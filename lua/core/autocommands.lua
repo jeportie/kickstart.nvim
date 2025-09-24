@@ -131,9 +131,9 @@ vim.api.nvim_create_autocmd('FileType', {
       if line:match '^(GET|POST|PUT|PATCH|DELETE) ' then
         vim.cmd 'Rest run'
       else
-        -- fall back to normal <CR> behavior
-        return vim.api.nvim_replace_termcodes('<CR>', true, true, true)
+        -- fallback: just move down one line (same as default Enter in normal mode)
+        vim.api.nvim_feedkeys('j', 'n', false)
       end
-    end, { buffer = buf, expr = true, desc = 'Run Rest.nvim on HTTP request line' })
+    end, { buffer = buf, desc = 'Run Rest.nvim on HTTP request line' })
   end,
 })
