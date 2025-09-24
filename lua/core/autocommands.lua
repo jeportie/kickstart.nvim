@@ -129,3 +129,36 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.keymap.set('n', '<leader>rr', '<cmd>Rest run<CR>', { buffer = buf, desc = 'Run Rest.nvim request' })
   end,
 })
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'http',
+  callback = function(args)
+    local ns = vim.api.nvim_create_namespace 'http-run-btn'
+    local buf = args.buf
+
+    -- Add a little ▶ symbol at the end of every HTTP request line
+    local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+    for i, line in ipairs(lines) do
+      if line:match '^(GET|POST|PUT|PATCH|DELETE) ' then
+        vim.api.nvim_buf_set_extmark(buf, ns, i - 1, -1, {
+          virt_text = { { ' ▶', 'DiagnosticHint' } }, -- looks like a button
+          virt_text_pos = 'eol',
+          hl_mode = 'combine',
+        })
+      end
+    end
+
+    -- Map left mouse click to run Rest on the clicked line
+    vim.keymap.set('n', '<LeftMouse>', function()
+      local pos = vim.fn.getmousepos()
+      local line = vim.api.nvim_buf_get_lines(0, pos.line - 1, pos.line, false)[1]
+      if line and line:match '^(GET|POST|PUT|PATCH|DELETE) ' then
+        vim.api.nvim_win_set_cursor(0, { pos.line, 0 })
+        vim.cmd 'Rest run'
+      else
+        -- fallback: just move cursor with the mouse
+        vim.cmd 'normal! <LeftMouse>'
+      end
+    end, { buffer = buf })
+  end,
+})
