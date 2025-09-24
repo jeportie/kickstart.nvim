@@ -126,14 +126,6 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = 'http',
   callback = function(args)
     local buf = args.buf
-    vim.keymap.set('n', '<CR>', function()
-      local line = vim.api.nvim_get_current_line()
-      if line:match '^(GET|POST|PUT|PATCH|DELETE) ' then
-        vim.cmd 'Rest run'
-      else
-        -- fallback: just move down one line (same as default Enter in normal mode)
-        vim.api.nvim_feedkeys('j', 'n', false)
-      end
-    end, { buffer = buf, desc = 'Run Rest.nvim on HTTP request line' })
+    vim.keymap.set('n', '<leader>rr', '<cmd>Rest run<CR>', { buffer = buf, desc = 'Run Rest.nvim request' })
   end,
 })
