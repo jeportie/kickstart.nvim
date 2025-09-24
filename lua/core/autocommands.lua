@@ -140,7 +140,8 @@ vim.api.nvim_create_autocmd('FileType', {
       vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
       local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
       for i, line in ipairs(lines) do
-        if line:match '^(GET|POST|PUT|PATCH|DELETE) ' then
+        -- Match actual request lines
+        if line:match '^%s*%u+%s+http' then
           vim.api.nvim_buf_set_extmark(buf, ns, i - 1, -1, {
             virt_text = { { ' ▶', 'DiagnosticHint' } },
             virt_text_pos = 'eol',
@@ -152,7 +153,7 @@ vim.api.nvim_create_autocmd('FileType', {
     -- Initial draw
     refresh_icons()
 
-    -- Redraw on buffer change
+    -- Redraw when buffer changes
     vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
       buffer = buf,
       callback = refresh_icons,
@@ -162,11 +163,11 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.keymap.set('n', '<LeftMouse>', function()
       local pos = vim.fn.getmousepos()
       local line = vim.api.nvim_buf_get_lines(0, pos.line - 1, pos.line, false)[1]
-      if line and line:match '^(GET|POST|PUT|PATCH|DELETE) ' then
+      if line and line:match '^%s*%u+%s+http' then
         vim.api.nvim_win_set_cursor(0, { pos.line, 0 })
         vim.cmd 'Rest run'
       else
-        -- Proper fallback: feed the actual mouse click
+        -- Proper fallback
         local key = vim.api.nvim_replace_termcodes('<LeftMouse>', true, false, true)
         vim.api.nvim_feedkeys(key, 'n', false)
       end
