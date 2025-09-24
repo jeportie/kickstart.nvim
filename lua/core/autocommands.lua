@@ -133,22 +133,32 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'http',
   callback = function(args)
-    local ns = vim.api.nvim_create_namespace 'http-run-btn'
     local buf = args.buf
+    local ns = vim.api.nvim_create_namespace 'http-run-btn'
 
-    -- Add a little ▶ symbol at the end of every HTTP request line
-    local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-    for i, line in ipairs(lines) do
-      if line:match '^(GET|POST|PUT|PATCH|DELETE) ' then
-        vim.api.nvim_buf_set_extmark(buf, ns, i - 1, -1, {
-          virt_text = { { ' ▶', 'DiagnosticHint' } }, -- looks like a button
-          virt_text_pos = 'eol',
-          hl_mode = 'combine',
-        })
+    local function refresh_icons()
+      vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
+      local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+      for i, line in ipairs(lines) do
+        if line:match '^(GET|POST|PUT|PATCH|DELETE) ' then
+          vim.api.nvim_buf_set_extmark(buf, ns, i - 1, -1, {
+            virt_text = { { ' ▶', 'DiagnosticHint' } },
+            virt_text_pos = 'eol',
+          })
+        end
       end
     end
 
-    -- Map left mouse click to run Rest on the clicked line
+    -- Initial draw
+    refresh_icons()
+
+    -- Redraw on buffer change
+    vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
+      buffer = buf,
+      callback = refresh_icons,
+    })
+
+    -- Click mapping
     vim.keymap.set('n', '<LeftMouse>', function()
       local pos = vim.fn.getmousepos()
       local line = vim.api.nvim_buf_get_lines(0, pos.line - 1, pos.line, false)[1]
@@ -156,8 +166,9 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.api.nvim_win_set_cursor(0, { pos.line, 0 })
         vim.cmd 'Rest run'
       else
-        -- fallback: just move cursor with the mouse
-        vim.cmd 'normal! <LeftMouse>'
+        -- Proper fallback: feed the actual mouse click
+        local key = vim.api.nvim_replace_termcodes('<LeftMouse>', true, false, true)
+        vim.api.nvim_feedkeys(key, 'n', false)
       end
     end, { buffer = buf })
   end,
