@@ -122,20 +122,18 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- Auto-run rest.nvim when cursor is on a HTTP request line in .http files
--- Only attach in .http buffers
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'http',
-  callback = function()
-    -- Create buffer-local autocmd for CursorHold
-    vim.api.nvim_create_autocmd('CursorHold', {
-      buffer = 0,
-      callback = function()
-        local line = vim.api.nvim_get_current_line()
-        if line:match '^(GET|POST|PUT|PATCH|DELETE) ' then
-          vim.cmd 'Rest run'
-        end
-      end,
-    })
+  callback = function(args)
+    local buf = args.buf
+    vim.keymap.set('n', '<CR>', function()
+      local line = vim.api.nvim_get_current_line()
+      if line:match '^(GET|POST|PUT|PATCH|DELETE) ' then
+        vim.cmd 'Rest run'
+      else
+        -- fall back to normal <CR> behavior
+        return vim.api.nvim_replace_termcodes('<CR>', true, true, true)
+      end
+    end, { buffer = buf, expr = true, desc = 'Run Rest.nvim on HTTP request line' })
   end,
 })
