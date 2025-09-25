@@ -126,14 +126,6 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = 'http',
   callback = function(args)
     local buf = args.buf
-    vim.keymap.set('n', '<leader>rr', '<cmd>Rest run<CR>', { buffer = buf, desc = 'Run Rest.nvim request' })
-  end,
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'http',
-  callback = function(args)
-    local buf = args.buf
     local ns = vim.api.nvim_create_namespace 'http-run-btn'
 
     local function refresh_icons()
@@ -145,32 +137,41 @@ vim.api.nvim_create_autocmd('FileType', {
           vim.api.nvim_buf_set_extmark(buf, ns, i - 1, -1, {
             virt_text = { { ' ▶', 'DiagnosticHint' } },
             virt_text_pos = 'eol',
+            hl_mode = 'combine',
           })
         end
       end
     end
 
-    -- Initial draw
     refresh_icons()
 
-    -- Redraw when buffer changes
     vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
       buffer = buf,
       callback = refresh_icons,
     })
 
-    -- Click mapping
+    -- Mouse click only triggers when clicking on the ▶ icon
     vim.keymap.set('n', '<LeftMouse>', function()
       local pos = vim.fn.getmousepos()
       local line = vim.api.nvim_buf_get_lines(0, pos.line - 1, pos.line, false)[1]
-      if line and line:match '^%s*%u+%s+http' then
-        vim.api.nvim_win_set_cursor(0, { pos.line, 0 })
-        vim.cmd 'Rest run'
-      else
-        -- Proper fallback
-        local key = vim.api.nvim_replace_termcodes('<LeftMouse>', true, false, true)
-        vim.api.nvim_feedkeys(key, 'n', false)
+      if not line then
+        return
       end
+
+      if line:match '^%s*%u+%s+http' then
+        -- The ▶ is drawn at end-of-line
+        local line_len = vim.fn.strdisplaywidth(line)
+        if pos.wincol > line_len then
+          -- Clicked on/after the ▶
+          vim.api.nvim_win_set_cursor(0, { pos.line, 0 })
+          vim.cmd 'Rest run'
+          return
+        end
+      end
+
+      -- Fallback to normal mouse behavior
+      local key = vim.api.nvim_replace_termcodes('<LeftMouse>', true, false, true)
+      vim.api.nvim_feedkeys(key, 'n', false)
     end, { buffer = buf })
   end,
 })
