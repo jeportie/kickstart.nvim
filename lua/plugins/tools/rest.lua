@@ -4,10 +4,10 @@ return {
     'nvim-treesitter/nvim-treesitter',
     'nvim-telescope/telescope.nvim',
 
-    -- add these to avoid luarocks
+    -- proper deps
     'nvim-neotest/nvim-nio',
-    'wilriker/mimetypes',
-    'KaiKratz/xml2lua', -- maintained fork
+    'daurnimator/lua-mimetypes',
+    'manoelcampos/xml2lua',
     'j-hui/fidget.nvim',
 
     opts = function(_, opts)
@@ -18,7 +18,7 @@ return {
   config = function()
     require('rest-nvim').setup {
       rocks = {
-        enabled = false, -- stop luarocks completely
+        enabled = false, -- completely disable luarocks
       },
       env = {
         enable = true,
