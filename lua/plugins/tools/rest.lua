@@ -4,9 +4,8 @@ return {
     'nvim-treesitter/nvim-treesitter',
     'nvim-telescope/telescope.nvim',
 
-    -- proper deps
     'nvim-neotest/nvim-nio',
-    'daurnimator/lua-mimetypes',
+    'lunarmodules/lua-mimetypes', -- using this instead
     'manoelcampos/xml2lua',
     'j-hui/fidget.nvim',
 
@@ -18,7 +17,7 @@ return {
   config = function()
     require('rest-nvim').setup {
       rocks = {
-        enabled = false, -- completely disable luarocks
+        enabled = false,
       },
       env = {
         enable = true,
@@ -26,7 +25,6 @@ return {
       },
     }
 
-    -- telescope extension
     pcall(require('telescope').load_extension, 'rest')
   end,
 }
