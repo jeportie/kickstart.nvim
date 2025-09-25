@@ -3,6 +3,13 @@ return {
   dependencies = {
     'nvim-treesitter/nvim-treesitter',
     'nvim-telescope/telescope.nvim',
+
+    -- add these to avoid luarocks
+    'nvim-neotest/nvim-nio',
+    'wilriker/mimetypes',
+    'KaiKratz/xml2lua', -- maintained fork
+    'j-hui/fidget.nvim',
+
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
       table.insert(opts.ensure_installed, 'http')
@@ -10,18 +17,16 @@ return {
   },
   config = function()
     require('rest-nvim').setup {
-      -- disable luarocks support completely
       rocks = {
-        enabled = false,
+        enabled = false, -- stop luarocks completely
       },
-
       env = {
         enable = true,
-        pattern = '.*%.env.*', -- detect any `.env*` file
+        pattern = '.*%.env.*',
       },
     }
 
-    -- load telescope extension for rest.nvim
+    -- telescope extension
     pcall(require('telescope').load_extension, 'rest')
   end,
 }
