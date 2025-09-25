@@ -10,7 +10,11 @@ return {
   },
   config = function()
     require('rest-nvim').setup {
-      -- your rest.nvim options here if needed
+      -- disable luarocks support completely
+      rocks = {
+        enabled = false,
+      },
+
       env = {
         enable = true,
         pattern = '.*%.env.*', -- detect any `.env*` file
