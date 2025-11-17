@@ -182,5 +182,11 @@ return {
 
       bashls = {}, -- Bash
     }
+    local lspconfig = require 'lspconfig'
+
+    for name, config in pairs(servers) do
+      config.capabilities = capabilities
+      lspconfig[name].setup(config)
+    end
   end,
 }
