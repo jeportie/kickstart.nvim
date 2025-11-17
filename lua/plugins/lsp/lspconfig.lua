@@ -137,64 +137,25 @@ return {
       },
     }
 
-    --------------------------------------------------------------------------
-    -- CAPABILITIES
-    --------------------------------------------------------------------------
     local capabilities = require('blink.cmp').get_lsp_capabilities()
-    local common = { capabilities = capabilities }
 
-    --------------------------------------------------------------------------
-    -- LUA LS
-    --------------------------------------------------------------------------
-    vim.lsp.config('lua_ls', {
-      capabilities = capabilities,
-      settings = {
-        Lua = {
-          completion = { callSnippet = 'Replace' },
-          diagnostics = { disable = { 'missing-fields' } },
+    local servers = {
+      clangd = {}, -- C/C++
+
+      lua_ls = { -- Lua
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = 'Replace',
+            },
+            diagnostics = {
+              disable = { 'missing-fields' },
+            },
+          },
         },
       },
-    })
-    vim.lsp.enable 'lua_ls'
 
-    --------------------------------------------------------------------------
-    -- BASH LS
-    --------------------------------------------------------------------------
-    vim.lsp.config('bashls', common)
-    vim.lsp.enable 'bashls'
-
-    --------------------------------------------------------------------------
-    -- TYPESCRIPT (tsserver)
-    --------------------------------------------------------------------------
-    vim.lsp.config('ts_ls', {
-      capabilities = capabilities,
-      filetypes = {
-        'javascript',
-        'typescript',
-        'javascriptreact',
-        'typescriptreact',
-      },
-
-      root_dir = function(fname)
-        local util = require 'lspconfig.util'
-
-        -- 1. API tsconfig.json
-        local ts = util.root_pattern 'tsconfig.json'(fname)
-        if ts then
-          return ts
-        end
-
-        -- 2. Local package.json
-        local pkg = util.root_pattern 'package.json'(fname)
-        if pkg then
-          return pkg
-        end
-
-        -- 3. Git root
-        return util.find_git_ancestor(fname)
-      end,
-    })
-
-    vim.lsp.enable 'ts_ls'
+      bashls = {}, -- Bash
+    }
   end,
 }
