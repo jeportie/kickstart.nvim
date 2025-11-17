@@ -155,6 +155,31 @@ return {
         },
       },
 
+      ts_ls = {
+        root_dir = function(fname)
+          local util = require 'lspconfig.util'
+
+          -- Priority 1: services/api
+          local api_root = util.root_pattern 'tsconfig.json'(fname)
+          if api_root then
+            return api_root
+          end
+
+          -- Priority 2: closest package.json
+          local pkg = util.root_pattern 'package.json'(fname)
+          if pkg then
+            return pkg
+          end
+
+          -- Fallback: git root
+          return util.find_git_ancestor(fname)
+        end,
+
+        -- Make TS understand .js + .d.ts
+        filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+        single_file_support = true,
+      },
+
       bashls = {}, -- Bash
     }
   end,
