@@ -137,56 +137,64 @@ return {
       },
     }
 
+    --------------------------------------------------------------------------
+    -- CAPABILITIES
+    --------------------------------------------------------------------------
     local capabilities = require('blink.cmp').get_lsp_capabilities()
+    local common = { capabilities = capabilities }
 
-    local servers = {
-      clangd = {}, -- C/C++
-
-      lua_ls = { -- Lua
-        settings = {
-          Lua = {
-            completion = {
-              callSnippet = 'Replace',
-            },
-            diagnostics = {
-              disable = { 'missing-fields' },
-            },
-          },
+    --------------------------------------------------------------------------
+    -- LUA LS
+    --------------------------------------------------------------------------
+    vim.lsp.config('lua_ls', {
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          completion = { callSnippet = 'Replace' },
+          diagnostics = { disable = { 'missing-fields' } },
         },
       },
+    })
+    vim.lsp.enable 'lua_ls'
 
-      ts_ls = {
-        root_dir = function(fname)
-          local util = require 'lspconfig.util'
+    --------------------------------------------------------------------------
+    -- BASH LS
+    --------------------------------------------------------------------------
+    vim.lsp.config('bashls', common)
+    vim.lsp.enable 'bashls'
 
-          -- Priority 1: services/api
-          local api_root = util.root_pattern 'tsconfig.json'(fname)
-          if api_root then
-            return api_root
-          end
-
-          -- Priority 2: closest package.json
-          local pkg = util.root_pattern 'package.json'(fname)
-          if pkg then
-            return pkg
-          end
-
-          -- Fallback: git root
-          return util.find_git_ancestor(fname)
-        end,
-
-        -- Make TS understand .js + .d.ts
-        filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-        single_file_support = true,
+    --------------------------------------------------------------------------
+    -- TYPESCRIPT (tsserver)
+    --------------------------------------------------------------------------
+    vim.lsp.config('ts_ls', {
+      capabilities = capabilities,
+      filetypes = {
+        'javascript',
+        'typescript',
+        'javascriptreact',
+        'typescriptreact',
       },
 
-      bashls = {}, -- Bash
-    }
-    local lspconfig = require 'lspconfig'
+      root_dir = function(fname)
+        local util = require 'lspconfig.util'
 
-    for name, config in pairs(servers) do
-      config.capabilities = capabilities
-      lspconfig[name].setup(config)
-    end
+        -- 1. API tsconfig.json
+        local ts = util.root_pattern 'tsconfig.json'(fname)
+        if ts then
+          return ts
+        end
+
+        -- 2. Local package.json
+        local pkg = util.root_pattern 'package.json'(fname)
+        if pkg then
+          return pkg
+        end
+
+        -- 3. Git root
+        return util.find_git_ancestor(fname)
+      end,
+    })
+
+    vim.lsp.enable 'ts_ls'
   end,
 }
