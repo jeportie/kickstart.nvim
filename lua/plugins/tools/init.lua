@@ -3,4 +3,5 @@ return {
   require 'plugins.tools.telescope',
   require 'plugins.tools.dap',
   require 'plugins.tools.rest',
+  require 'plugins.tools.emmet',
 }
