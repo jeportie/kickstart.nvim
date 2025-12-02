@@ -175,3 +175,11 @@ vim.api.nvim_create_autocmd('FileType', {
     end, { buffer = buf })
   end,
 })
+
+-- Restore Emmet's omnifunc for HTML/CSS/JSX/TSX
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'html', 'css', 'javascriptreact', 'typescriptreact' },
+  callback = function()
+    vim.bo.omnifunc = 'emmet#completeTag'
+  end,
+})
