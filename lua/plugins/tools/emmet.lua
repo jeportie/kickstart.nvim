@@ -1,8 +1,8 @@
 return {
   'mattn/emmet-vim',
-  ft = { 'html', 'css', 'javascriptreact', 'typescriptreact' },
-  init = function()
-    -- Make <Tab> expand Emmet in insert mode only when appropriate
+  lazy = false, -- 🚨 load immediately
+  config = function()
     vim.g.user_emmet_leader_key = '<C-e>'
+    vim.g.user_emmet_mode = 'inv'
   end,
 }
