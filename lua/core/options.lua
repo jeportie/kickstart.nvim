@@ -59,8 +59,14 @@ o.pumheight = 10
 
 -- Enable treesitter-based folding
 vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldlevel = 99 -- start unfolded
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function()
+    if pcall(require, 'nvim-treesitter') then
+      vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+    end
+  end,
+})
 
 -- Base46 cache path (for theme/plugin caching)
 g.base46_cache = vim.fn.stdpath 'data' .. '/base46_cache/'

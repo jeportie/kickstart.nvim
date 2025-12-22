@@ -32,7 +32,6 @@ g.toggle_theme_icon = '   '
 g.have_nerd_font = true
 
 require 'core.init'
-require('lazy').setup(require 'plugins')
 
 -- load NVChad’s cached highlights (Base46)
 for _, f in ipairs(vim.fn.readdir(g.base46_cache)) do
