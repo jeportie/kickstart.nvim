@@ -1,5 +1,5 @@
 -- Adds git related signs to the gutter, as well as utilities for managing changes
-dofile(vim.g.base46_cache .. 'git')
+-- dofile(vim.g.base46_cache .. 'git')
 
 return {
   {

@@ -1,4 +1,4 @@
-dofile(vim.g.base46_cache .. 'mason')
+-- dofile(vim.g.base46_cache .. 'mason')
 
 return {
   {

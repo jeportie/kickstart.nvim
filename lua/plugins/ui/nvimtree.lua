@@ -1,4 +1,4 @@
-dofile(vim.g.base46_cache .. 'nvimtree')
+-- dofile(vim.g.base46_cache .. 'nvimtree')
 
 return {
   'nvim-tree/nvim-tree.lua',

@@ -1,6 +1,6 @@
 --[[
   ┌────────────────────────────────────────────────────────────────────────────┐
-  │                             NVChad Config                                  │
+  │                             My Neovim Config                               │
   ├────────────────────────────────────────────────────────────────────────────┤
   │  • init.lua                  ← Entry point: sets globals, loads core       │
   │  • lua/chadrc.lua            ← User overrides for UI & Base46 (themes,     │

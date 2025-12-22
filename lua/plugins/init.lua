@@ -18,7 +18,7 @@ return {
   require 'plugins.lsp',
   require 'plugins.format',
   require 'plugins.tools',
-  require 'plugins.ia',
+  require 'plugins.ai',
   require 'plugins.navigation',
   require 'plugins.custom',
 }
