@@ -13,5 +13,5 @@
 require 'core.options'
 require 'core.mappings'
 require 'core.autocommands'
-require 'core.lazy_install'
+require 'core.lazy'
 require 'core.health'
