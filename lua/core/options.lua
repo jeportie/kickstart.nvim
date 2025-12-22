@@ -37,10 +37,10 @@ o.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- [[ Indentation ]] --------------------------------------------------------
 o.expandtab = true -- Use space characters
-o.shiftwidth = 4 -- Size for autoindent
-o.tabstop = 4 -- Number of spaces tabs count for
-o.softtabstop = 4 -- Number of spaces for <Tab> in insert mode
+o.shiftwidth = 2 -- Size for autoindent
 o.smartindent = true -- Smart autoindenting on newline
+o.tabstop = 2 -- Number of spaces tabs count for
+o.softtabstop = 2 -- Number of spaces for <Tab> in insert mode
 
 -- [[ Search ]] -------------------------------------------------------------
 o.ignorecase = true -- Case-insensitive search...
