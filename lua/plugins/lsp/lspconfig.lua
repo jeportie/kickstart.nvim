@@ -1,18 +1,19 @@
--- -------------------------------------------------------------------------- --
+-- ************************************************************************** --
 --                                                                            --
---                                                        :::      ::::::::   --
---   lspconfig.lua                                      :+:      :+:    :+:   --
---                                                    +:+ +:+         +:+     --
---   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
---                                                +#+#+#+#+#+   +#+           --
---   Created: 2025/06/24 18:40:20 by jeportie          #+#    #+#             --
---   Updated: 2025/06/24 18:59:22 by jeportie         ###   ########.fr       --
+--                                                :::::::::::    :::::::::    --
+--   lspconfig.lua                                    :+:        :+:    :+:   --
+--                                                    +:+        +:+    +:+   --
+--   By: jeportie <jeromep.dev@gmail.com>             +#+        +#++:++#+    --
+--                                                    +#+        +#+          --
+--   Created: 2025/12/23 14:50:40 by jeportie     #+# #+#   #+#  #+#          --
+--   Updated: 2025/12/23 14:50:43 by jeportie      #####    ###  ###          --
 --                                                                            --
--- -------------------------------------------------------------------------- --
+-- ************************************************************************** --
 
 return {
   -- Main LSP Configuration
   'neovim/nvim-lspconfig',
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },
@@ -140,22 +141,35 @@ return {
     local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     local servers = {
-      clangd = {}, -- C/C++
-
-      lua_ls = { -- Lua
+      clangd = {},
+      bashls = {},
+      html = {},
+      cssls = {},
+      tailwindcss = {},
+      eslint = {
+        settings = {
+          workingDirectories = { mode = 'auto' },
+        },
+      },
+      -- Lua (Neovim config)
+      lua_ls = {
         settings = {
           Lua = {
-            completion = {
-              callSnippet = 'Replace',
-            },
+            completion = { callSnippet = 'Replace' },
             diagnostics = {
               disable = { 'missing-fields' },
+              globals = { 'vim' },
             },
           },
         },
       },
-
-      bashls = {}, -- Bash
     }
+
+    for name, cfg in pairs(servers) do
+      vim.lsp.config(name, {
+        capabilities = capabilities,
+        settings = cfg.settings,
+      })
+    end
   end,
 }

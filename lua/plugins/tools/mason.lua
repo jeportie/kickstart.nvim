@@ -23,21 +23,23 @@ return {
       }
       require('mason-lspconfig').setup {
         automatic_installation = true, -- Automatically install missing LSP servers
+        ensure_installed = {
+          'cssls',
+          'emmet_language_server',
+          'eslint',
+          'lua_ls',
+          'prismals',
+          'tailwindcss',
+        },
       }
       require('mason-tool-installer').setup {
         ensure_installed = {
-          -- we’ll fill this in from your lspconfig.lua
           'stylua',
-          -- add more CLI tools here if desired
+          'prettier',
         },
       }
       require('mason-nvim-dap').setup {
         automatic_installation = true,
-        ensure_installed = {
-          'codelldb',
-          'bash-debug-adapter',
-          -- add other debug adapters here
-        },
       }
     end,
   },
