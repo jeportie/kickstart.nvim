@@ -24,6 +24,7 @@ require('lazy').setup {
     { import = 'plugins.snacks' },
     { import = 'plugins.ai' },
     { import = 'plugins.custom' },
+    { import = 'plugins.nvzone' },
   },
 
   defaults = {

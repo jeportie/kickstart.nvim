@@ -113,7 +113,7 @@ map('n', '<C-n>', '<cmd>NvimTreeToggle<CR>', { desc = 'nvimtree toggle window' }
 map('n', '<leader>e', '<cmd>NvimTreeFocus<CR>', { desc = 'nvimtree focus window' })
 
 -- nvchad
-map('n', '<leader>th', function()
+map('n', '<leader>nth', function()
   require('nvchad.themes').open()
 end, { desc = 'telescope nvchad themes' })
 
