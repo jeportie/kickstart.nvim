@@ -1,17 +1,17 @@
 local map = vim.keymap.set
+local global = vim.g
 
--- Set <space> as the leader key
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ','
+-- Leader keys
+global.mapleader = ' '
+global.maplocalleader = ','
 
--- Remap ";" in normal mode to enter command mode
+-- General
 map('n', ';', ':', { desc = 'Enter command mode' })
--- Map "jk" in insert mode to exit to normal mode
-map('i', 'jk', '<ESC>', { desc = 'Exit insert mode' })
--- Clear highlights on search when pressing <Esc> in normal mode
-map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- general
+map('i', 'jk', '<ESC>', { desc = 'Exit insert mode' })
+
+map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlights' })
+
 map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
@@ -22,13 +22,14 @@ map('n', '<Right>', '<C-w>l', { desc = 'Move focus to the right window' })
 map('n', '<Down>', '<C-w>j', { desc = 'Move focus to the lower window' })
 map('n', '<Up>', '<C-w>k', { desc = 'Move focus to the upper window' })
 
-map('n', '<C-s>', '<cmd>w<CR>', { desc = 'general save file' })
-map('n', '<C-c>', '<cmd>%y+<CR>', { desc = 'general copy whole file' })
+map('n', '<C-s>', '<cmd>w<CR>', { desc = 'Save file' })
+
+map('n', '<C-c>', '<cmd>%y+<CR>', { desc = 'Copy file' })
 
 -- UI toggles
 map('n', '<leader>ur', '<cmd>set rnu!<CR>', { desc = 'Toggle relative numbers' })
 
-vim.keymap.set('n', '<leader>uc', function()
+map('n', '<leader>uc', function()
   if vim.wo.colorcolumn:find '80' then
     vim.cmd 'set colorcolumn-=80'
   else
@@ -36,9 +37,24 @@ vim.keymap.set('n', '<leader>uc', function()
   end
 end, { desc = 'Toggle colorcolumn (80)' })
 
--- Comment
--- map('n', '<leader>/', 'gcc', { desc = 'toggle comment', remap = true })
-map('v', '<leader>/', 'gc', { desc = 'toggle comment', remap = true })
+-- Comments
+map('n', '<leader>/', '<cmd>normal gcc<CR>', {
+  desc = 'Toggle comment line',
+})
 
--- help / cheats
+map('v', '<leader>/', '<cmd>normal gc<CR>', {
+  desc = 'Toggle comment selection',
+})
+
+-- NvChad
+map('n', '<leader>nth', function()
+  require('nvchad.themes').open()
+end, { desc = 'telescope nvchad themes' })
 map('n', '<leader>ch', '<cmd>NvCheatsheet<CR>', { desc = 'NVChad Cheatsheet' })
+
+-- WhichKey
+map('n', '<leader>wK', '<cmd>WhichKey <CR>', { desc = 'whichkey all keymaps' })
+
+map('n', '<leader>wk', function()
+  vim.cmd('WhichKey ' .. vim.fn.input 'WhichKey: ')
+end, { desc = 'whichkey query lookup' })

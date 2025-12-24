@@ -21,9 +21,6 @@ o.confirm = true -- Confirm potentially destructive actions
 o.undofile = true -- Persist undo history across sessions
 o.updatetime = 250 -- Faster completion and CursorHold
 o.timeoutlen = 300 -- Mapped sequence timeout length (ms)
-api.nvim_set_hl(0, 'ColorColumn', {
-  bg = '#264b2f',
-})
 
 -- [[ User Interface ]] -----------------------------------------------------
 o.termguicolors = true -- Enable 24-bit RGB colors

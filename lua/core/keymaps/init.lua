@@ -12,7 +12,6 @@ local M = {}
 
 -- exported helpers for plugin configs
 -- M.lsp_on_attach = require('core.keymaps.lsp').on_attach
-M.whichkey_groups = require('core.keymaps.whichkey').setup
 
 -- exported plugin key tables (used by lazy specs)
 M.plugins = {
