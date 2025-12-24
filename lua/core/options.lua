@@ -12,6 +12,7 @@
 
 local o = vim.opt
 local g = vim.g
+local api = vim.api
 
 -- [[ General ]] -------------------------------------------------------------
 o.mouse = 'a' -- Enable mouse support in all modes
@@ -20,6 +21,9 @@ o.confirm = true -- Confirm potentially destructive actions
 o.undofile = true -- Persist undo history across sessions
 o.updatetime = 250 -- Faster completion and CursorHold
 o.timeoutlen = 300 -- Mapped sequence timeout length (ms)
+api.nvim_set_hl(0, 'ColorColumn', {
+  bg = '#264b2f',
+})
 
 -- [[ User Interface ]] -----------------------------------------------------
 o.termguicolors = true -- Enable 24-bit RGB colors
@@ -58,12 +62,12 @@ o.completeopt = { 'menuone', 'noselect' } -- Better completion experience
 o.pumheight = 10
 
 -- Enable treesitter-based folding
-vim.opt.foldmethod = 'expr'
-vim.opt.foldlevel = 99 -- start unfolded
-vim.api.nvim_create_autocmd('FileType', {
+o.foldmethod = 'expr'
+o.foldlevel = 99 -- start unfolded
+api.nvim_create_autocmd('FileType', {
   callback = function()
     if pcall(require, 'nvim-treesitter') then
-      vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+      o.foldexpr = 'nvim_treesitter#foldexpr()'
     end
   end,
 })
