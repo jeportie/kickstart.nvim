@@ -1,26 +1,42 @@
-local map = vim.keymap.set
+local M = {}
 
--- terminal
-map('t', '<C-x>', '<C-\\><C-N>', { desc = 'terminal escape terminal mode' })
+M.keys = {
+  { '<C-x>', '<C-\\><C-N>', mode = 't', desc = 'Exit terminal mode' },
 
--- new terminals
-map('n', '<leader>th', function()
-  require('nvchad.term').new { pos = 'sp' }
-end, { desc = 'terminal new horizontal term' })
+  {
+    '<A-v>',
+    function()
+      require('nvchad.term').toggle { pos = 'vsp', id = 'vtoggleTerm' }
+    end,
+    mode = { 'n', 't' },
+    desc = 'Terminal (vertical toggle)',
+  },
 
-map('n', '<leader>tv', function()
-  require('nvchad.term').new { pos = 'vsp' }
-end, { desc = 'terminal new vertical term' })
+  {
+    '<A-i>',
+    function()
+      require('nvchad.term').toggle { pos = 'float', id = 'floatTerm' }
+    end,
+    mode = { 'n', 't' },
+    desc = 'Terminal (float toggle)',
+  },
 
--- toggleable
-map({ 'n', 't' }, '<A-v>', function()
-  require('nvchad.term').toggle { pos = 'vsp', id = 'vtoggleTerm' }
-end, { desc = 'terminal toggleable vertical term' })
+  {
+    '<leader>tt',
+    function()
+      require('snacks').terminal.toggle(nil, {
+        win = {
+          position = 'float',
+          border = 'rounded',
+          width = 0.9,
+          height = 0.9,
+          backdrop = false,
+          style = 'terminal',
+        },
+      })
+    end,
+    desc = 'Terminal (float)',
+  },
+}
 
-map('n', '<leader>tt', function()
-  require('nvchad.term').toggle { pos = 'sp', id = 'htoggleTerm' }
-end, { desc = 'terminal toggleable horizontal term' })
-
-map({ 'n', 't' }, '<A-i>', function()
-  require('nvchad.term').toggle { pos = 'float', id = 'floatTerm' }
-end, { desc = 'terminal toggle floating term' })
+return M

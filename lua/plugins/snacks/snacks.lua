@@ -5,11 +5,13 @@ return {
 
   opts = {
     bigfile = { enabled = true },
-    explorer = { enabled = true },
     input = { enabled = true },
+    keymap = { enabled = true },
     rename = { enabled = true },
     terminal = { enabled = true },
     lazygit = { enabled = true },
+    toggle = { enabled = true },
+    win = { enabled = true },
 
     dashboard = {
       enabled = true,
@@ -53,5 +55,11 @@ return {
       },
     },
   },
-  keys = require('core.keymaps').plugins.snacks,
+
+  keys = (function()
+    local keys = {}
+    vim.list_extend(keys, require('core.keymaps').plugins.snacks)
+    vim.list_extend(keys, require('core.keymaps').plugins.terminal)
+    return keys
+  end)(),
 }
