@@ -9,6 +9,7 @@ return {
     input = { enabled = true },
     rename = { enabled = true },
     terminal = { enabled = true },
+    lazygit = { enabled = true },
 
     dashboard = {
       enabled = true,
