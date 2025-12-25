@@ -52,5 +52,5 @@ return {
       },
     },
   },
-  -- keys = require('core.keymaps').plugins.snacks,
+  keys = require('core.keymaps').plugins.snacks,
 }
