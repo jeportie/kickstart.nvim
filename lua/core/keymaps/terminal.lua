@@ -22,7 +22,7 @@ M.keys = {
   },
 
   {
-    '<leader>tt',
+    '<F5>',
     function()
       require('snacks').terminal.toggle(nil, {
         win = {
