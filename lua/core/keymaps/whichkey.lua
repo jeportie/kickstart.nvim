@@ -6,11 +6,14 @@ M.spec = {
   { '<leader>e', group = '[E]xplorer', icon = '󰙅 ' },
   { '<leader>b', group = '[B]uffers', icon = ' ' },
   { '<leader>g', group = '[G]it', icon = '󰊢 ' },
-  { '<leader>l', group = '[L]SP', icon = ' ' },
+  { '<leader>l', group = '[L]sp', icon = ' ' },
+  { '<leader>ls', group = '[L]sp [S]aga', icon = '󰰡 ' },
+  { '<leader>lt', group = '[L]sp [T]ypeScript', icon = ' ' },
   { '<leader>T', group = '[T]ests', icon = '󰙨 ' },
   { '<leader>t', group = '[T]erminal', icon = ' ' },
   { '<leader>u', group = '[U]ser Interface', icon = '󱍂 ' },
   { '<leader>w', group = '[W]indows', icon = ' ' },
+  { 'g', group = '[G]oTo - navigation', icon = '󰎐 ' },
 }
 
 return M

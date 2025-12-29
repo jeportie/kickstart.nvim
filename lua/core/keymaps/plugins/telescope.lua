@@ -9,35 +9,35 @@ M.keys = {
     desc = 'LSP references',
   },
   {
-    'gd',
+    '<leader>ld',
     function()
       require('telescope.builtin').lsp_definitions()
     end,
-    desc = 'LSP definitions',
+    desc = 'Telescope LSP definitions',
   },
   {
-    'gi',
+    '<leader>li',
     function()
       require('telescope.builtin').lsp_implementations()
     end,
-    desc = 'LSP implementations',
+    desc = 'Telescope LSP implementations',
   },
   {
-    'gt',
+    '<leader>lt',
     function()
       require('telescope.builtin').lsp_type_definitions()
     end,
-    desc = 'LSP type definitions',
+    desc = 'Telescope LSP type definitions',
   },
   {
-    'gO',
+    '<leader>lo',
     function()
       require('telescope.builtin').lsp_document_symbols()
     end,
-    desc = 'Document symbols',
+    desc = 'Telescope Document symbols',
   },
   {
-    'gW',
+    '<leader>lws',
     function()
       require('telescope.builtin').lsp_dynamic_workspace_symbols()
     end,

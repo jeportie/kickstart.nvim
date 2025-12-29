@@ -1,5 +1,9 @@
 {
     "diagnostics.globals": [
         "dofiile"
+    ],
+    "diagnostics.disable": [
+        "missing-fields",
+        "assign-type-mismatch"
     ]
 }

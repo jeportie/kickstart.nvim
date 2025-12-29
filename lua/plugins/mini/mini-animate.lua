@@ -18,7 +18,7 @@ return {
       },
 
       resize = {
-        enable = true,
+        enable = false,
         timing = animate.gen_timing.linear { duration = 80 },
       },
 

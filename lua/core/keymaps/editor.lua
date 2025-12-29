@@ -51,12 +51,7 @@ map('n', '<leader>rs', '/\\v<><Left>', {
   desc = 'Search word boundary (\\v< >)',
 })
 
-map('n', '<leader>rw', function()
-  vim.cmd [[
-    let @/='\<'.expand('<cword>').'\>'
-    %s/<C-r>//g
-  ]]
-end, { desc = 'Rename word under cursor' })
+vim.api.nvim_set_keymap('n', '<leader>rw', [[:let @/='\<'.expand('<cword>').'\>'<CR>:%s/<C-r>///g<Left><Left>]], { desc = 'Rename word under cursor' })
 
 -- ============================================================================
 -- Insert mode navigation
