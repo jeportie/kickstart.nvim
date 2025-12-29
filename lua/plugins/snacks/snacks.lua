@@ -60,6 +60,8 @@ return {
     local keys = {}
     vim.list_extend(keys, require('core.keymaps').plugins.snacks)
     vim.list_extend(keys, require('core.keymaps').plugins.terminal)
+    vim.list_extend(keys, require('core.keymaps').plugins.telescope)
+    vim.list_extend(keys, require('core.keymaps').plugins.lspsaga)
     return keys
   end)(),
 }

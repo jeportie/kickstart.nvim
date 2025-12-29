@@ -1,15 +1,3 @@
--- -------------------------------------------------------------------------- --
---                                                                            --
---                                                        :::      ::::::::   --
---   blink.lua                                          :+:      :+:    :+:   --
---                                                    +:+ +:+         +:+     --
---   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        --
---                                                +#+#+#+#+#+   +#+           --
---   Created: 2025/06/27 10:56:27 by jeportie          #+#    #+#             --
---   Updated: 2025/06/28 00:51:06 by jeportie         ###   ########.fr       --
---                                                                            --
--- -------------------------------------------------------------------------- --
-
 return {
   {
     'saghen/blink.compat',
@@ -42,7 +30,7 @@ return {
       },
       appearance = { nerd_font_variant = 'mono' },
       completion = {
-        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+        documentation = { auto_show = true, auto_show_delay_ms = 50 },
       },
       sources = {
         default = {

@@ -2,48 +2,68 @@ local map = vim.keymap.set
 
 local M = {}
 
--- Global (non-buffered) LSP mappings
-map('n', '<leader>ds', vim.diagnostic.setloclist, { desc = 'LSP diagnostic loclist' })
+-- ============================================================================
+-- Global LSP / Diagnostics (non-buffered)
+-- ============================================================================
 
--- Formatting (adjust to your formatter plugin)
-map('n', '<leader>fm', function()
+map('n', '<leader>ld', vim.diagnostic.setloclist, {
+  desc = '[L]SP [D]iagnostics (loclist)',
+})
+
+map('n', '<leader>lf', function()
   require('conform').format { lsp_fallback = true }
-end, { desc = 'Format file' })
+end, { desc = '[L]SP [F]ormat file' })
 
--- LSP on_attach
+-- ============================================================================
+-- LSP on_attach (buffer-local)
+-- ============================================================================
+
 function M.on_attach(_, bufnr)
   local opts = { buffer = bufnr }
 
-  map('n', 'gd', vim.lsp.buf.definition, vim.tbl_extend('force', opts, { desc = 'LSP definition' }))
-  map('n', 'gD', vim.lsp.buf.declaration, vim.tbl_extend('force', opts, { desc = 'LSP declaration' }))
-  map('n', 'gi', vim.lsp.buf.implementation, vim.tbl_extend('force', opts, { desc = 'LSP implementation' }))
-  map('n', '<leader>rn', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'LSP rename' }))
+  local function bmap(mode, lhs, rhs, desc)
+    map(mode, lhs, rhs, vim.tbl_extend('force', opts, { desc = desc }))
+  end
 
-  map('n', '<leader>ih', function()
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-  end, vim.tbl_extend('force', opts, { desc = 'Toggle inlay hints' }))
+  -- Core navigation
+  bmap('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
+  bmap('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
+  bmap('n', 'gi', vim.lsp.buf.implementation, 'Go to implementation')
+  bmap('n', 'gr', vim.lsp.buf.references, 'Go to references')
 
-  -- TypeScript-only tools
-  if vim.bo[bufnr].filetype == 'typescript' or vim.bo[bufnr].filetype == 'typescriptreact' then
-    -- Add missing imports
-    map('n', '<leader>ai', '<cmd>TSToolsAddMissingImports<CR>', vim.tbl_extend('force', opts, { desc = 'Add missing imports' }))
-    -- Organize imports
-    map('n', '<leader>oi', '<cmd>TSToolsOrganizeImports<CR>', vim.tbl_extend('force', opts, { desc = 'Organize imports' }))
-    -- Remove unused imports / vars
-    map('n', '<leader>ru', '<cmd>TSToolsRemoveUnused<CR>', vim.tbl_extend('force', opts, { desc = 'Remove unused' }))
-    -- Oxlint autofix (pnpm)
-    map('n', '<leader>ox', function()
-      vim.fn.system('pnpm oxlint --fix ' .. vim.fn.expand '%')
-    end, vim.tbl_extend('force', opts, { desc = 'Oxlint fix file' }))
-    -- Fix all (TS + ESLint)
-    map('n', '<leader>fa', function()
+  -- Actions
+  bmap('n', '<leader>lr', vim.lsp.buf.rename, '[L]SP [R]ename')
+  bmap({ 'n', 'v' }, '<leader>la', vim.lsp.buf.code_action, '[L]SP Code [A]ction')
+
+  -- Hover / signature
+  bmap('n', 'K', vim.lsp.buf.hover, 'Hover documentation')
+  bmap('n', '<C-k>', vim.lsp.buf.signature_help, 'Signature help')
+
+  -- Inlay hints (0.10 / 0.11 safe)
+  if vim.lsp.inlay_hint then
+    bmap('n', '<leader>li', function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }, { bufnr = bufnr })
+    end, '[L]SP Toggle [I]nlay hints')
+  end
+
+  -- ==========================================================================
+  -- TypeScript extras (TSTools)
+  -- ==========================================================================
+
+  local ft = vim.bo[bufnr].filetype
+  if ft == 'typescript' or ft == 'typescriptreact' then
+    bmap('n', '<leader>li', '<cmd>TSToolsAddMissingImports<CR>', 'TS add imports')
+    bmap('n', '<leader>lo', '<cmd>TSToolsOrganizeImports<CR>', 'TS organize imports')
+    bmap('n', '<leader>lu', '<cmd>TSToolsRemoveUnused<CR>', 'TS remove unused')
+
+    bmap('n', '<leader>lf', function()
       vim.cmd 'TSToolsFixAll'
       vim.wait(100)
       vim.lsp.buf.code_action {
         context = { only = { 'source.fixAll.eslint' } },
         apply = true,
       }
-    end, vim.tbl_extend('force', opts, { desc = 'Fix all auto-fixable problems' }))
+    end, 'TS fix all')
   end
 end
 
