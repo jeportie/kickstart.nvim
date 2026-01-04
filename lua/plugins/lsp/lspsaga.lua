@@ -15,7 +15,7 @@ return {
     { '<leader>ce', '<Cmd>Lspsaga code_action<CR>',                desc = '[c]ode [a]ction' },
     { '<leader>ck', '<Cmd>Lspsaga hover_doc<CR>',                  mode = { 'n', 'i' },              desc = 'Saga [H]over Doc' },
     { '<leader>co', '<Cmd>Lspsaga outline<CR>',                    desc = '[S]aga [O]utline' },
-    { '<leader>cn', '<Cmd>Lspsaga rename<CR>',                     desc = '[R]ename [E]lement' },
+    { '<leader>rr', '<Cmd>Lspsaga rename<CR>',                     desc = '[R]ename [E]lement' },
     { '<leader>cp', '<Cmd>Lspsaga peek_definition<CR>',            desc = '[f]loat [p]eek def' },
   },
 

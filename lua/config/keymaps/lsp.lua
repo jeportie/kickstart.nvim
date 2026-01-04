@@ -13,13 +13,6 @@ function M.on_attach(_, bufnr)
     map(mode, lhs, rhs, vim.tbl_extend('force', opts, { desc = desc }))
   end
 
-  -- Inlay hints (0.10 / 0.11 safe)
-  if vim.lsp.inlay_hint then
-    bmap('n', '<leader>ch', function()
-      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }, { bufnr = bufnr })
-    end, '[L]SP Toggle Inlay [H]ints')
-  end
-
   -- ==========================================================================
   -- TypeScript extras (TSTools)
   -- ==========================================================================

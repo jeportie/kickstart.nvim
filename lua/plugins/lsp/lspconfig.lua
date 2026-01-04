@@ -8,12 +8,10 @@ return {
     end
     -- declare non-TS servers here
     opts.servers = opts.servers or {}
-
     opts.servers.lua_ls = {}
     opts.servers.cssls = {}
     opts.servers.html = {}
     opts.servers.jsonls = {}
-    opts.servers.pyright = {} -- optional
 
     return opts
   end,

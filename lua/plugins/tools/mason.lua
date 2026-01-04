@@ -12,10 +12,8 @@ return {
         "tailwindcss-language-server",
         -- Formatters / tools
         "stylua",
-        "shfmt",
         "prettier",
         "shellcheck",
-        "flake8",
       },
     }
   }
