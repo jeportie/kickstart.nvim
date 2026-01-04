@@ -6,7 +6,18 @@ return {
     'nvim-treesitter/nvim-treesitter',
   },
   event = 'LspAttach',
-  -- cmd = { 'Lspsaga' },
+
+  keys = {
+    { '<CR>',       '<Cmd>Lspsaga show_cursor_diagnostics<CR>',    desc = '[s]how [c]ursor diag' },
+    { '<leader>cD', '<Cmd>Lspsaga show_line_diagnostics<CR>',      desc = '[s]how [l]ine diag' },
+    { '<leader>cb', '<Cmd>Lspsaga show_buf_diagnostics<CR>',       desc = '[s]how [b]uffer diag' },
+    { '<leader>cw', '<Cmd>Lspsaga show_workspace_diagnostics<CR>', desc = '[s]how [w]orkspace diags' },
+    { '<leader>ce', '<Cmd>Lspsaga code_action<CR>',                desc = '[c]ode [a]ction' },
+    { '<leader>ck', '<Cmd>Lspsaga hover_doc<CR>',                  mode = { 'n', 'i' },              desc = 'Saga [H]over Doc' },
+    { '<leader>co', '<Cmd>Lspsaga outline<CR>',                    desc = '[S]aga [O]utline' },
+    { '<leader>cn', '<Cmd>Lspsaga rename<CR>',                     desc = '[R]ename [E]lement' },
+    { '<leader>cp', '<Cmd>Lspsaga peek_definition<CR>',            desc = '[f]loat [p]eek def' },
+  },
 
   config = function()
     require('lspsaga').setup {}

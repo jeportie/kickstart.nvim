@@ -5,13 +5,12 @@
   │  • init.lua                  ← Entry point: sets globals, loads core       │
   │  • lua/chadrc.lua            ← User overrides for UI & Base46 (themes,     │
   │                                 statusline, tabufline, etc.)               │
-  │  • lua/core/                 ← Core engine files: autocommands, mappings,  │
-  │       ├── init.lua             options, health checks, lazy-installer      │
-  │       ├── options.lua         (loaded by init.lua)                         │
-  │       ├── mappings.lua                                                     │
-  │       └── autocommands.lua                                                 │
+  │  • lua/config/               ← Core engine files: autocommands, mappings,  │
+  │       ├── lazy.lua             options, health checks, lazy-installer      │
+  │       ├── options.lua                                                      │
+  │       ├── keymaps.lua                                                      │
+  │       └── autocmds.lua                                                     │
   │  • lua/plugins/              ← Per-plugin configs, organized by feature    │
-  │       ├── init.lua             (formatting, LSP, UI tweaks, tools, etc.)   │
   │       ├── format/                                                          │
   │       ├── lsp/                                                             │
   │       ├── ui/                                                              │
@@ -31,7 +30,7 @@ local g = vim.g
 g.toggle_theme_icon = '   '
 g.have_nerd_font = true
 
-require 'core.init'
+require("config.lazy")
 
 -- load NVChad’s cached highlights (Base46)
 for _, f in ipairs(vim.fn.readdir(g.base46_cache)) do

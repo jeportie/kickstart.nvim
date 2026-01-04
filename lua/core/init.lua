@@ -1,5 +1,0 @@
-require 'core.options'
-require 'core.autocommands'
-require 'core.lazy'
-require 'core.health'
-require 'core.keymaps'
