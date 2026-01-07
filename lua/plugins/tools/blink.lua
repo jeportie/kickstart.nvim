@@ -6,9 +6,26 @@ return {
         ghost_text = {
           enabled = false, -- ❌ disable inline grey text
         },
+        auto_show = true,
+        fallbacks = { "snippets", "buffer" },
+        debounce = 0,
+        window = {
+          border = "rounded", -- "single" | "double" | "rounded" | "solid"
+        },
+      },
+      sorting = {
+        kind_priority = {
+          Snippet = 100, -- 🚀 always first
+          Function = 90,
+          Method = 85,
+          Constructor = 80,
+          Keyword = 70,
+          Variable = 60,
+          Text = 10,
+        },
       },
       sources = {
-        default = { "lsp", "snippets", "path", "buffer" },
+        default = { "snippets", "lsp", "path", "buffer" },
         providers = {
           lsp = {
             score_offset = 100,
@@ -17,7 +34,7 @@ return {
           snippets = {
             name = "snippets",
             module = "blink.cmp.sources.snippets",
-            score_offset = 10, -- big bump
+            score_offset = 150, -- big bump
             min_keyword_length = 2,
           },
           buffer = {
