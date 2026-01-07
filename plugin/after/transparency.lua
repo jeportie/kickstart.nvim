@@ -2,8 +2,10 @@ local hl = vim.api.nvim_set_hl
 
 -- transparent background
 hl(0, "Normal", { bg = "none" })
-hl(0, "NormalFloat", { bg = "none" })
-hl(0, "FloatBorder", { bg = "none" })
+-- hl(0, "NormalFloat", { bg = "none" })
+-- hl(0, "FloatBorder", { bg = "none" })
+hl(0, "NormalFloat", { bg = "#1e1e2e", default = true })
+hl(0, "FloatBorder", { fg = "#7aa2f7", bg = "#1e1e2e", default = true })
 hl(0, "Pmenu", { bg = "none" })
 hl(0, "Terminal", { bg = "none" })
 hl(0, "EndOfBuffer", { bg = "none" })
@@ -58,11 +60,34 @@ hl(0, "TabLineSel", { bg = "none" })
 -- Separator
 hl(0, "WinSeparator", { bg = "none" })
 
+-- Blink completion menu
+hl(0, "BlinkCmpMenu", { bg = "#1e1e2e" })
+hl(0, "BlinkCmpMenuBorder", { fg = "#7aa2f7", bg = "#1e1e2e" })
+
+-- Blink documentation window
+hl(0, "BlinkCmpDoc", { bg = "#1e1e2e" })
+hl(0, "BlinkCmpDocBorder", { fg = "#7aa2f7", bg = "#1e1e2e" })
+
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
     hl(0, "TabLine", { bg = "none" })
     hl(0, "TabLineFill", { bg = "none" })
     hl(0, "TabLineSel", { bg = "none" })
     hl(0, "WinSeparator", { bg = "none" })
+  end,
+})
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    hl(0, "NormalFloat", {
+      bg = "#1e1e2e",
+      default = true,
+    })
+
+    hl(0, "FloatBorder", {
+      fg = "#7aa2f7",
+      bg = "#1e1e2e",
+      default = true,
+    })
   end,
 })

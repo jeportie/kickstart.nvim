@@ -7,7 +7,7 @@ o.mouse = 'a'               -- Enable mouse support in all modes
 o.clipboard = 'unnamedplus' -- Use system clipboard
 o.confirm = true            -- Confirm potentially destructive actions
 o.undofile = true           -- Persist undo history across sessions
-o.updatetime = 250          -- Faster completion and CursorHold
+o.updatetime = 150          -- Faster completion and CursorHold
 o.timeoutlen = 300          -- Mapped sequence timeout length (ms)
 
 -- [[ User Interface ]] -----------------------------------------------------
