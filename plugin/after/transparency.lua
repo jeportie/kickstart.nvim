@@ -2,16 +2,9 @@ local hl = vim.api.nvim_set_hl
 
 -- transparent background
 hl(0, "Normal", { bg = "none" })
--- hl(0, "Pmenu", { bg = "none" })
--- hl(0, "NormalFloat", { bg = "none" })
--- hl(0, "FloatBorder", { bg = "none" })
-
--- Completion menu
-hl(0, "Pmenu", { bg = "#1e1e2e", blend = 10 })
--- hl(0, "Pmenu", { bg = "#1e1e2e" })       -- dark readable bg
-hl(0, "PmenuSel", { bg = "#313244" }) -- selected item
-hl(0, "FloatBorder", { fg = "#7aa2f7", bg = "none" })
-
+hl(0, "NormalFloat", { bg = "none" })
+hl(0, "FloatBorder", { bg = "none" })
+hl(0, "Pmenu", { bg = "none" })
 hl(0, "Terminal", { bg = "none" })
 hl(0, "EndOfBuffer", { bg = "none" })
 hl(0, "FoldColumn", { bg = "none" })

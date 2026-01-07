@@ -11,6 +11,11 @@ return {
         debounce = 0,
         window = {
           border = "rounded", -- "single" | "double" | "rounded" | "solid"
+          winblend = 0,
+          winhighlight = {
+            Normal = "Pmenu",
+            FloatBorder = "PmenuBorder",
+          },
         },
       },
       sorting = {
