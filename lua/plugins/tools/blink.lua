@@ -35,15 +35,15 @@ return {
       sources = {
         default = { "snippets", "lsp", "path", "buffer" },
         providers = {
-          lsp = {
-            score_offset = 100,
-            -- trigger_characters = { "." },
-          },
           snippets = {
             name = "snippets",
             module = "blink.cmp.sources.snippets",
-            score_offset = 150, -- big bump
-            min_keyword_length = 2,
+            score_offset = 250, -- big bump
+            min_keyword_length = 1,
+          },
+          lsp = {
+            score_offset = 100,
+            -- trigger_characters = { "." },
           },
           buffer = {
             score_offset = -20,

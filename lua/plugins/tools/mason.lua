@@ -9,7 +9,7 @@ return {
         "eslint-lsp",
         "lua-language-server",
         "prisma-language-server",
-        -- "tailwindcss-language-server",
+        "tailwindcss-language-server",
         -- Formatters / tools
         "stylua",
         "prettier",
