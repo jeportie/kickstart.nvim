@@ -11,7 +11,14 @@ return {
   },
 
   config = function()
-    require('lspsaga').setup {}
+    require('lspsaga').setup {
+      lightbulb = {
+        enable = false,
+        enable_in_insert = true,
+        sign = true,
+        virtual_text = false,
+      },
+    }
     -- after require('lspsaga').setup {} in your config:
     local saga_outline_grp = vim.api.nvim_create_augroup('SagaOutlineArrows', { clear = true })
 
