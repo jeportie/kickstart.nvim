@@ -1,5 +1,5 @@
 return {
-  'neovim/nvim-lspconfig',
+  "neovim/nvim-lspconfig",
   opts = function(_, opts)
     -- declare non-TS servers here
     opts.servers = opts.servers or {}

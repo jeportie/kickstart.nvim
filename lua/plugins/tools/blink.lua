@@ -3,12 +3,13 @@ return {
     "saghen/blink.cmp",
     opts = {
       completion = {
-        ghost_text = {
-          enabled = false, -- ❌ disable inline grey text
+        trigger = {
+          show_on_insert = true,
+          show_on_keyword = true,
         },
-        -- auto_show = true,
-        -- fallbacks = { "snippets", "buffer" },
-        -- debounce = 0,
+        ghost_text = {
+          enabled = false,
+        },
         menu = {
           border = "rounded", -- "single" | "double" | "rounded" | "solid"
           winblend = 0,
@@ -16,34 +17,22 @@ return {
         documentation = {
           auto_show = true,
           window = {
-            border = "rounded", -- 🔥 THIS was missing
+            border = "rounded",
             winblend = 0,
           },
         },
       },
-      -- sorting = {
-      --   kind_priority = {
-      --     Snippet = 100, -- 🚀 always first
-      --     Function = 90,
-      --     Method = 85,
-      --     Constructor = 80,
-      --     Keyword = 70,
-      --     Variable = 60,
-      --     Text = 10,
-      --   },
-      -- },
       sources = {
         default = { "snippets", "lsp", "path", "buffer" },
         providers = {
           snippets = {
             name = "snippets",
             module = "blink.cmp.sources.snippets",
-            score_offset = 250, -- big bump
+            score_offset = 250,
             min_keyword_length = 1,
           },
           lsp = {
             score_offset = 100,
-            -- trigger_characters = { "." },
           },
           buffer = {
             score_offset = -20,
