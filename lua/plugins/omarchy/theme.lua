@@ -1,1 +1,0 @@
-/home/jeportie/.config/omarchy/current/theme/neovim.lua
