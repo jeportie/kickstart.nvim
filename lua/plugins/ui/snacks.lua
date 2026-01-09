@@ -2,14 +2,17 @@ return {
   "snacks.nvim",
   keys = {
     {
-      '<leader>flr',
+      "<leader>flr",
       function()
-        require('snacks').picker.lsp_references()
+        require("snacks").picker.lsp_references()
       end,
-      desc = 'Find LSP references',
+      desc = "Find LSP references",
     },
   },
   opts = {
+    scroll = {
+      enabled = false, -- Disable scrolling animations
+    },
     dashboard = {
       preset = {
         pick = function(cmd, opts)
