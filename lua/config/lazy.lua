@@ -14,14 +14,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- local env = require("config.env")
-
 require("lazy").setup({
   spec = {
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { import = "plugins" },
-
-    -- env.is_omarchy and { import = "plugins.omarchy" } or nil,
 
     { import = "plugins.omarchy" },
     { import = "plugins.nvzone" },
