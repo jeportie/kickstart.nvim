@@ -3,7 +3,7 @@ return {
     "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
-        -- LSP servers (Mason package names!)
+        -- LSP servers
         "css-lsp",
         "emmet-language-server",
         "eslint-lsp",

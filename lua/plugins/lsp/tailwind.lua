@@ -1,3 +1,4 @@
+-- lua/plugins/lsp/tailwind.lua
 return {
   "neovim/nvim-lspconfig",
   opts = {
@@ -14,17 +15,6 @@ return {
           "vue",
           "svelte",
         },
-
-        -- root_dir = require("lspconfig.util").root_pattern(
-        --   "tailwind.config.js",
-        --   "tailwind.config.cjs",
-        --   "tailwind.config.mjs",
-        --   "tailwind.config.ts",
-        --   "postcss.config.js",
-        --   "package.json",
-        --   ".git"
-        -- ),
-
         settings = {
           tailwindCSS = {
             validate = true,
