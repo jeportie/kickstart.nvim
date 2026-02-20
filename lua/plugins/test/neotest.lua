@@ -7,18 +7,18 @@ return {
     "mfussenegger/nvim-dap",
     "antoinemadec/FixCursorHold.nvim",
     "marilari88/neotest-vitest",
+    "orjangj/neotest-ctest",
   },
 
   opts = {
     adapters = {
       ["neotest-vitest"] = {
         command = "npx vitest",
-
         cwd = function(path)
-          -- 🔥 This is the important part
           return require("lspconfig.util").root_pattern("vitest.config.ts", "package.json", ".git")(path)
         end,
       },
+      ["neotest-ctest"] = {},
     },
   },
 }
