@@ -11,3 +11,13 @@ local function noop(_, _, _, _) end
 
 vim.lsp.handlers["textDocument/hover"] = noop
 vim.lsp.handlers["textDocument/signatureHelp"] = noop
+
+-- Prevent scrollbind/cursorbind from leaking out of diff mode into normal splits
+vim.api.nvim_create_autocmd("WinEnter", {
+  callback = function()
+    if not vim.wo.diff then
+      vim.wo.scrollbind = false
+      vim.wo.cursorbind = false
+    end
+  end,
+})

@@ -123,7 +123,9 @@ end, { desc = "WhichKey: query" })
 -- ============================================================================
 
 local neotest = require("neotest")
+local detox = require("lib.detox")
 
+-- Summary / output
 map("n", "<leader>ts", function()
   neotest.summary.toggle()
 end, { desc = "Neotest: Toggle summary" })
@@ -132,18 +134,6 @@ map("n", "<leader>tS", function()
   neotest.summary.open()
 end, { desc = "Neotest: Open summary" })
 
-map("n", "<leader>tr", function()
-  neotest.run.run()
-end, { desc = "Neotest: Run nearest" })
-
-map("n", "<leader>tf", function()
-  neotest.run.run(vim.fn.expand("%"))
-end, { desc = "Neotest: Run file" })
-
-map("n", "<leader>ta", function()
-  neotest.run.run(vim.fn.getcwd())
-end, { desc = "Neotest: Run all" })
-
 map("n", "<leader>to", function()
   neotest.output.open({ enter = true })
 end, { desc = "Neotest: Open output popup" })
@@ -151,3 +141,48 @@ end, { desc = "Neotest: Open output popup" })
 map("n", "<leader>tO", function()
   neotest.output_panel.toggle()
 end, { desc = "Neotest: Toggle output panel" })
+
+-- Smart run (pre-checks + "both" mode for mobile e2e)
+map("n", "<leader>tr", function()
+  detox.smart_run("nearest")
+end, { desc = "Neotest: Run nearest" })
+
+map("n", "<leader>tf", function()
+  detox.smart_run("file")
+end, { desc = "Neotest: Run file" })
+
+map("n", "<leader>ta", function()
+  detox.smart_run("all")
+end, { desc = "Neotest: Run all" })
+
+-- Playwright debug (--debug flag)
+map("n", "<leader>td", function()
+  neotest.run.run({ extra_args = { "--debug" } })
+end, { desc = "Neotest: Debug nearest (PWDEBUG)" })
+
+map("n", "<leader>tD", function()
+  neotest.run.run({ vim.fn.expand("%"), extra_args = { "--debug" } })
+end, { desc = "Neotest: Debug file (PWDEBUG)" })
+
+-- Detox: platform picker, build, metro
+map("n", "<leader>tc", "<cmd>NeotestDetoxPlatform<CR>", { desc = "Detox: Pick platform" })
+map("n", "<leader>tb", "<cmd>NeotestDetoxBuild<CR>", { desc = "Detox: Build app" })
+map("n", "<leader>tm", "<cmd>NeotestDetoxMetro<CR>", { desc = "Detox: Toggle Metro" })
+
+-- Summary-only custom keys
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "neotest-summary",
+  callback = function(ev)
+    -- "p" = Playwright debug (--debug flag for Playwright Inspector)
+    vim.keymap.set("n", "p", function()
+      vim.g._neotest_pw_debug = true
+      vim.api.nvim_feedkeys("r", "m", false)
+    end, { buffer = ev.buf, desc = "Neotest: Playwright debug (--debug)" })
+
+    -- "P" = Detox debug (DEBUG_DETOX=1 for trace logging)
+    vim.keymap.set("n", "P", function()
+      vim.g._neotest_detox_debug = true
+      vim.api.nvim_feedkeys("r", "m", false)
+    end, { buffer = ev.buf, desc = "Neotest: Detox debug (trace)" })
+  end,
+})
