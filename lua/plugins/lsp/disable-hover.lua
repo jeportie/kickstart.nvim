@@ -9,7 +9,23 @@ return {
       { "K",          false },
       { "<leader>ca", false },
 
-      { 'K',          '<Cmd>Lspsaga hover_doc<CR>',                       mode = { 'n', 'i' },                 desc = 'Hover Docs' },
+      {
+        'K',
+        function()
+          local ok, util = pcall(require, "xray.util")
+          if ok then
+            local id = util.cword_id()
+            if id then
+              require("xray.hover").trigger(id)
+              return
+            end
+          end
+          vim.cmd("Lspsaga hover_doc")
+        end,
+        mode = { 'n' },
+        desc = 'Xray/Lspsaga hover',
+      },
+      { 'K',          '<Cmd>Lspsaga hover_doc<CR>',                       mode = { 'i' },                      desc = 'Hover Docs' },
       { '<CR>',       '<Cmd>Lspsaga show_cursor_diagnostics<CR>',         desc = 'Show cursor diagnostics' },
       { '<leader>ca', '<Cmd>Lspsaga code_action<CR>',                     desc = 'Code action' },
       { "<leader>cA", LazyVim.lsp.action.source,                          desc = "Source Action",              has = "codeAction" },
