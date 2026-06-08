@@ -25,7 +25,6 @@ return {
         mode = { 'n' },
         desc = 'Xray/Lspsaga hover',
       },
-      { 'K',          '<Cmd>Lspsaga hover_doc<CR>',                       mode = { 'i' },                      desc = 'Hover Docs' },
       { '<CR>',       '<Cmd>Lspsaga show_cursor_diagnostics<CR>',         desc = 'Show cursor diagnostics' },
       { '<leader>ca', '<Cmd>Lspsaga code_action<CR>',                     desc = 'Code action' },
       { "<leader>cA", LazyVim.lsp.action.source,                          desc = "Source Action",              has = "codeAction" },

@@ -7,6 +7,9 @@ return {
     opts.servers.cssls = {}
     opts.servers.html = {}
     opts.servers.jsonls = {}
+    opts.servers.gh_actions_ls = {
+      root_markers = { ".github" },
+    }
 
     return opts
   end,

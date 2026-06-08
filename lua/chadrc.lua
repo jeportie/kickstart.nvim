@@ -13,8 +13,10 @@ M.ui = {
   statusline = {
     theme = 'default',
     separator_style = 'default',
-    order = nil,
-    modules = nil,
+    order = { 'mode', 'file', 'git', '%=', 'lsp_msg', '%=', 'diagnostics', 'claude', 'lsp', 'cwd', 'cursor' },
+    modules = {
+      claude = function() return require('lib.claudecode_statusline').claude() end,
+    },
   },
   -- lazyload it when there are 1+ buffers
   tabufline = {

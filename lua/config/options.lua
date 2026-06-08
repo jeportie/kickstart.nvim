@@ -47,6 +47,17 @@ o.whichwrap:append '<>[]hl' -- Allow cursor wrap keys
 o.completeopt = { 'menuone', 'noselect' } -- Better completion experience
 o.pumheight = 10
 
+-- [[ Diff ]] ---------------------------------------------------------------
+-- Histogram algorithm + linematch produce dramatically clearer diffs for code.
+o.diffopt = {
+  'internal',
+  'filler',
+  'closeoff',
+  'algorithm:histogram',
+  'linematch:60',
+  'indent-heuristic',
+}
+
 -- Enable treesitter-based folding
 o.foldmethod = 'expr'
 o.foldlevel = 99 -- start unfolded
