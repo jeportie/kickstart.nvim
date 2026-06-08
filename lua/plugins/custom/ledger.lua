@@ -1,24 +1,29 @@
 return {
-  name = "xray",
-  dir = vim.fn.stdpath("config"),
+  "jeportie/ledger.nvim",
+  dir = vim.fn.expand("~/src/ledger.nvim"),
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvzone/volt",
+    "nvzone/menu",
   },
   lazy = false,
   priority = 100,
   config = function()
-    local xray = require("xray")
-    xray.setup({
-      project_key = "B2CQA",
-      ledger_live_root = nil,
+    require("ledger").setup({
+      jira = { project_key = "QAA", board_name = "Team QA Automation" },
+      xray = { project_key = "B2CQA" },
     })
 
+    vim.keymap.set("n", "<leader>jb", function()
+      require("ledger.jira.board").open()
+    end, { desc = "Jira board (QA Automation)" })
+
     vim.keymap.set("n", "<leader>fx", function()
-      xray.search()
+      require("ledger.xray").search()
     end, { desc = "Xray: find B2CQA tickets" })
+
     vim.keymap.set("n", "<leader>xc", function()
-      xray.coverage()
+      require("ledger.xray").coverage()
     end, { desc = "Xray: coverage stats (desktop/mobile)" })
 
     vim.api.nvim_create_autocmd("FileType", {

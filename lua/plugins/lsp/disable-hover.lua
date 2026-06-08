@@ -12,11 +12,15 @@ return {
       {
         'K',
         function()
-          local ok, util = pcall(require, "xray.util")
+          -- TODO(ledger): move this xray K-hover override into ledger.nvim
+          -- (e.g. `require("ledger.xray").attach_hover_override()` called from
+          -- ledger.setup()) so any consumer of the plugin gets it automatically
+          -- without having to override LSP keymaps in their own config.
+          local ok, util = pcall(require, "ledger.xray.util")
           if ok then
             local id = util.cword_id()
             if id then
-              require("xray.hover").trigger(id)
+              require("ledger.xray.hover").trigger(id)
               return
             end
           end

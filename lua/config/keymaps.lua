@@ -121,9 +121,13 @@ end, { desc = "WhichKey: query" })
 -- ============================================================================
 -- Neotest
 -- ============================================================================
+-- TODO(ledger): move this whole block into ledger.nvim (e.g. expose
+-- `require("ledger.neotest").register_keymaps()` and call it from the
+-- ledger.lua lazy spec) so the Detox/Playwright test workflow keymaps
+-- ship with the plugin instead of living in user config.
 
 local neotest = require("neotest")
-local detox = require("lib.detox")
+local detox = require("ledger.detox")
 
 -- Summary / output
 map("n", "<leader>ts", function()
