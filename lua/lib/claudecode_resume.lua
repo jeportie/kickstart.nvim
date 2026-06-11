@@ -2,6 +2,10 @@ local M = {}
 
 local state_file = vim.fn.stdpath("data") .. "/claudecode_resume.json"
 
+-- Only gate the very first Claude open per nvim session.
+local session_checked = false
+local popup_open = false
+
 local function read_state()
   local f = io.open(state_file, "r")
   if not f then
@@ -48,7 +52,11 @@ local function dismiss(cwd)
   write_state(state)
 end
 
-local function show_popup(cwd)
+---Show the resume popup.
+---@param cwd string Current working directory
+---@param on_resume function Called when the user chooses to resume
+---@param on_fresh function Called when the user declines (open a fresh session)
+local function show_popup(cwd, on_resume, on_fresh)
   local display = vim.fn.fnamemodify(cwd, ":~")
   local lines = {
     "",
@@ -83,7 +91,10 @@ local function show_popup(cwd)
   vim.wo[win].number = false
   vim.wo[win].relativenumber = false
 
+  popup_open = true
+
   local function close()
+    popup_open = false
     if vim.api.nvim_win_is_valid(win) then
       vim.api.nvim_win_close(win, true)
     end
@@ -94,15 +105,17 @@ local function show_popup(cwd)
 
   local function yes()
     close()
-    vim.cmd("ClaudeCode --continue")
+    on_resume()
   end
   local function no()
     close()
+    on_fresh()
   end
   local function never()
     close()
     dismiss(cwd)
     vim.notify("Claude resume disabled for " .. display, vim.log.levels.INFO)
+    on_fresh()
   end
 
   map("n", "y", yes, opts)
@@ -116,22 +129,41 @@ local function show_popup(cwd)
   map("n", "X", never, opts)
 end
 
-function M.setup()
-  vim.api.nvim_create_autocmd("VimEnter", {
-    callback = function()
-      vim.defer_fn(function()
-        local cwd = vim.fn.getcwd()
-        if is_dismissed(cwd) then
-          return
-        end
-        if not has_sessions(cwd) then
-          return
-        end
-        show_popup(cwd)
-      end, 80)
-    end,
-  })
+---Toggle Claude, gating the first open of the session behind a resume prompt.
+---Wire this to the Claude toggle keymaps in place of `:ClaudeCode`.
+function M.toggle()
+  -- Avoid re-entry while the popup is up.
+  if popup_open then
+    return
+  end
 
+  local function fresh()
+    vim.cmd("ClaudeCode")
+  end
+
+  -- After the first decision this session, behave like a plain toggle.
+  if session_checked then
+    return fresh()
+  end
+  session_checked = true
+
+  -- If Claude was already opened by some other path, just toggle.
+  local term_ok, term = pcall(require, "claudecode.terminal")
+  if term_ok and term.get_active_terminal_bufnr and term.get_active_terminal_bufnr() then
+    return fresh()
+  end
+
+  local cwd = vim.fn.getcwd()
+  if is_dismissed(cwd) or not has_sessions(cwd) then
+    return fresh()
+  end
+
+  show_popup(cwd, function()
+    vim.cmd("ClaudeCode --continue")
+  end, fresh)
+end
+
+function M.setup()
   vim.api.nvim_create_user_command("ClaudeCodeResumeUndismiss", function()
     local cwd = vim.fn.getcwd()
     local state = read_state()
