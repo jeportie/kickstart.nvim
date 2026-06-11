@@ -12,11 +12,18 @@ return {
     require("ledger").setup({
       jira = { project_key = "QAA", board_name = "Team QA Automation" },
       xray = { project_key = "B2CQA" },
+      -- Point the builder at your local ledger-live checkout so build/test
+      -- tasks resolve even when nvim's cwd is elsewhere.
+      monorepo_root = "~/src/tries/2026-04-08-LedgerHQ-ledger-live",
     })
 
     vim.keymap.set("n", "<leader>jb", function()
       require("ledger.jira.board").open()
     end, { desc = "Jira board (QA Automation)" })
+
+    vim.keymap.set("n", "<leader>Lb", function()
+      require("ledger.builder").toggle()
+    end, { desc = "Ledger Builder dashboard" })
 
     vim.keymap.set("n", "<leader>fx", function()
       require("ledger.xray").search()
