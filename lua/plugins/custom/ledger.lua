@@ -21,7 +21,12 @@ return {
       require("ledger.jira.board").open()
     end, { desc = "Jira board (QA Automation)" })
 
-    vim.keymap.set("n", "<leader>Lb", function()
+    -- Ledger-live suite lives under <leader>l (see <leader>p for Lazy).
+    pcall(function()
+      require("which-key").add({ { "<leader>l", group = "+ledger" } })
+    end)
+
+    vim.keymap.set("n", "<leader>lb", function()
       require("ledger.builder").toggle()
     end, { desc = "Ledger Builder dashboard" })
 

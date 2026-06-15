@@ -16,6 +16,14 @@ map("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy whole file" })
 
 -- ============================================================================
+-- Plugin manager — Lazy moves to <leader>p so <leader>l is free for the
+-- ledger-live suite (<leader>lb = Builder, see lua/plugins/custom/ledger.lua).
+-- ============================================================================
+
+pcall(vim.keymap.del, "n", "<leader>l") -- drop LazyVim's default <leader>l → :Lazy
+map("n", "<leader>p", "<cmd>Lazy<CR>", { desc = "Lazy (plugin manager)" })
+
+-- ============================================================================
 -- Window navigation
 -- ============================================================================
 
