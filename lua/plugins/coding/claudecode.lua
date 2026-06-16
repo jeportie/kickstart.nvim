@@ -51,6 +51,7 @@ return {
     require("lib.claudecode_rules").setup()
     require("lib.claudecode_lsp").setup()
     require("lib.claudecode_review").setup()
+    require("lib.claudecode_worktree").setup()
   end,
   keys = {
     { "<leader>a", nil, desc = "AI/Claude Code" },
@@ -83,5 +84,8 @@ return {
     -- Rules & context
     { "<leader>au", function() require("lib.claudecode_rules").pick() end, desc = "Pick Claude rules file" },
     { "<leader>aL", function() require("lib.claudecode_lsp").send_context() end, desc = "Send LSP context" },
+    -- Worktree cockpit
+    { "<leader>aw", function() require("lib.claudecode_worktree").pick() end, desc = "Worktree cockpit" },
+    { "<leader>aj", function() require("lib.claudecode_worktree").jump_to_pending() end, desc = "Jump to pending Claude" },
   },
 }
