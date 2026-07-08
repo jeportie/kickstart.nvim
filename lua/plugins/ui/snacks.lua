@@ -8,6 +8,13 @@ return {
       end,
       desc = "Find LSP references",
     },
+    {
+      "<leader>gg",
+      function()
+        require("snacks").lazygit()
+      end,
+      desc = "Lazygit (git + worktrees)",
+    },
   },
   opts = {
     scroll = {
