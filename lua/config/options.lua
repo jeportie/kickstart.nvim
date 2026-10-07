@@ -10,6 +10,14 @@ o.undofile = true           -- Persist undo history across sessions
 o.updatetime = 150          -- Faster completion and CursorHold
 o.timeoutlen = 300          -- Mapped sequence timeout length (ms)
 
+-- [[ LSP ]] ----------------------------------------------------------------
+-- Use vtsls (full tsserver): needed for JSDoc-rich hover, add-missing-imports
+-- (<leader>cM), and refactors the tsgo preview server doesn't implement yet.
+-- The monorepo OOM is held off by lua/plugins/lsp/vtsls.lua (8 GB cap +
+-- disableAutomaticTypeAcquisition). Switch back to 'tsgo' for max speed if you
+-- can live without those features.
+g.lazyvim_ts_lsp = 'vtsls'
+
 -- [[ User Interface ]] -----------------------------------------------------
 o.termguicolors = true -- Enable 24-bit RGB colors
 o.laststatus = 3 -- Global statusline
